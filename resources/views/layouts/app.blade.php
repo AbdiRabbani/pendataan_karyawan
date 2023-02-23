@@ -29,7 +29,6 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
-
     <aside
         class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
         id="sidenav-main">
@@ -71,7 +70,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="/users">
+                    <a class="nav-link text-white " href="/user">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">view_in_ar</i>
                         </div>

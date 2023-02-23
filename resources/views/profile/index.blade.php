@@ -48,7 +48,7 @@
                                         class="text-dark">Name:</strong> &nbsp; {{ Auth::user()->name }}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
                                         class="text-dark">NIP:</strong>
-                                    &nbsp; 1234</li>
+                                    &nbsp; {{$bio->nip}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Join
                                         Date:</strong> &nbsp; 13 February 2022</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
@@ -306,11 +306,11 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="d-flex px-4 py-4">pp</td>
-                                    <td class="d-flex px-4 py-4">pp</td>
-                                    <td class="d-flex px-4 py-4">pp</td>
-                                    <td class="d-flex px-4 py-4">pp</td>
-                                    <td class="d-flex px-4 py-4">pp</td>
+                                    <td class="px-4 py-4">pp</td>
+                                    <td class="px-4 py-4">pp</td>
+                                    <td class="px-4 py-4">pp</td>
+                                    <td class="px-4 py-4">pp</td>
+                                    <td class="px-4 py-4">pp</td>
                                 </tr>
                             </tbody>
                         </table>

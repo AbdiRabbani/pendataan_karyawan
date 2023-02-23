@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePayrollTable extends Migration
+class CreateBiodataTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,19 @@ class CreatePayrollTable extends Migration
      */
     public function up()
     {
-        Schema::create('payroll', function (Blueprint $table) {
+        Schema::create('biodata', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_title')->unsigned();
+            $table->integer('id_dept')->unsigned();
+            $table->integer('nip');
+            $table->date('join_date');
+            $table->text('adress');
+            $table->integer('no_ktp');
+            $table->date('birth_date');
+            $table->Biginteger('mobile_phone');
+            $table->string('photo');
+            $table->foreign('id_title')->references('id')->on('title')->onDelete('cascade');
+            $table->foreign('id_dept')->references('id')->on('departement')->onDelete('cascade');
             $table->string('bank_name');
             $table->string('account_name');
             $table->integer('account_number');
@@ -34,6 +45,6 @@ class CreatePayrollTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payroll');
+        Schema::dropIfExists('biodata');
     }
 }

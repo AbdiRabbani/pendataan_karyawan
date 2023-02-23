@@ -21,8 +21,14 @@ Route::get('/home', 'HomeController@index');
 Route::get('/profile', 'ProfileController@index');
 
 // User
-Route::get('/users', 'AdminUsersController@index');
+Route::get('/user', 'AdminUsersController@index');
 Route::view('/user/create', 'user.create-user');
+Route::delete('/user/delete/{id}', 'AdminUsersController@destroy');
+Route::get('/user/create', 'AdminUsersController@create');
+Route::post('/simpan-user', 'AdminUsersController@save');
+Route::post('/simpan-data', 'AdminUsersController@saveBio');
+Route::get('user/edit/{id}', 'AdminUsersController@edit');
+
 
 
 // Title

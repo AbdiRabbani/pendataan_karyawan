@@ -18,15 +18,25 @@
                         <table class="table table-hover">
                             <thead>
                                 <th>Nama</th>
-                                <th>Username</th>
+                                <th>Level</th>
                                 <th>Email</th>
+                                <th class="text-center">Action</th>
                             </thead>
                         <tbody>
                             @foreach($user as $row)
                             <tr>
-                                <td class="d-flex px-4">{{$row->name}}</td>
-                                <td class="">{{$row->username}}</td>
-                                <td class="d-flex px-4">{{$row->email}}</td>
+                                <td class="px-4">{{$row->name}}</td>
+                                <td class="px-4">{{$row->level}}</td>
+                                <td class="px-4">{{$row->email}}</td>
+                                <td class="align-middle text-center text-sm">
+                                        <form action="{{ url('user/delete/'.$row->id) }}" method="post">
+                                            @csrf
+                                            {{method_field('DELETE')}}
+                                            <a href="{{ url('user/edit/'.$row->id) }}" class="btn btn-warning">Edit</a>
+                                            <a href="#" class="btn btn-success">Detail</a>
+                                            <button type="submit" class="btn btn-danger">DELETE</button>
+                                        </form>
+                                    </td>
                             </tr>
                             @endforeach
                         </tbody>
