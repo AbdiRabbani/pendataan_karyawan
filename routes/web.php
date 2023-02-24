@@ -23,13 +23,17 @@ Route::get('/home', 'HomeController@index');
 //profile
 Route::get('/profile', 'ProfileController@index');
 
-// User
-Route::resource('/user', 'DataUserController');
-Route::post('simpan-data', 'DataUserController@biostore');
+
 
 //Biodata
 Route::resource('/biodata','DataBioController');
 
+
+Route::middleware(['auth', 'admin'])->group(function() {
+
+// User
+Route::resource('/user', 'DataUserController');
+Route::post('simpan-data', 'DataUserController@biostore');
 
 // Title
 Route::resource('/title', 'TitleController');
@@ -37,6 +41,5 @@ Route::resource('/title', 'TitleController');
 //Departement
 Route::resource('/departement', 'DeptController');
 
+});
 
-// fix
-Route::get('/fix', 'DataUserController@fix');
