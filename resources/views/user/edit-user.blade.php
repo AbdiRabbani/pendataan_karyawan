@@ -17,7 +17,7 @@
                 <label for="dataEmail">EMail</label>
                 <input type="email" id="dataEmail" class="border p-2 form-control mb-3" value="{{$user->email}}" disabled>
                 <label for="dataPhoneP">Mobile Phone</label>
-                <input name="mobile_phone" type="number" id="dataPhone" class="border p-2 form-control mb-3" value="{{$biodata->biodata->mobile_phone}}">
+                <input name="mobile_phone" type="number" id="dataPhone" class="border p-2 form-control mb-3">
                 <label for="dataPhoto">Upload Your Photo</label>
                 <input name="photo" type="file" id="dataPhoto" class="border p-2 form-control mb-3">
                 <label for="dataNip">NIP</label>
@@ -28,14 +28,12 @@
             <div class="col-md-4">
                 <label for="dataTitle">Title</label>
                 <select name="id_title" class="form-select p-2 border mb-3" id="dataTitle">
-                    <option selected>Choose..</option>
                     @foreach($title as $row)
                     <option value="{{$row->id}}">{{$row->title_name}}</option>
                     @endforeach
                 </select>
                 <label for="dataDept">Deparatement</label>
                 <select name="id_dept" class="form-select p-2 border mb-3" id="dataDept">
-                    <option selected>Choose..</option>
                     @foreach($dept as $row)
                     <option value="{{$row->id}}">{{$row->dept_name}}</option>
                     @endforeach
