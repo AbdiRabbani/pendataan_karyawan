@@ -6,11 +6,14 @@
         style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
         <span class="mask  bg-gradient-primary  opacity-6"></span>
     </div>
+    @foreach($bio as $row)
+    @foreach($title as $trow)
+    @foreach($dept as $drow)
     <div class="card card-body mx-3 mx-md-4 mt-n6">
         <div class="row gx-4 mb-2">
             <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
-                    <img src="{{asset('template/img/bruce-mars.jpg')}}" alt="profile_image"
+                    <img src="{{asset('/storage/images/profile/'.$row->photo)}}" alt="profile_image"
                         class="w-100 border-radius-lg shadow-sm">
                 </div>
             </div>
@@ -20,7 +23,7 @@
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </h5>
                     <p class="mb-0 font-weight-normal text-sm">
-                        CEO / Co-Founder
+                        {{$trow->title_name}}
                     </p>
                 </div>
             </div>
@@ -47,18 +50,18 @@
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
                                         class="text-dark">Name:</strong> &nbsp; {{ Auth::user()->name }}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">NIP:</strong>
-                                    &nbsp; {{$bio->nip}}</li>
+                                        class="text-dark">NIP:</strong> &nbsp; {{$row->nip}}
+                                </li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Join
-                                        Date:</strong> &nbsp; 13 February 2022</li>
+                                        Date:</strong> &nbsp; {{$row->join_date}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Title:</strong> &nbsp; Manager</li>
+                                        class="text-dark">Title:</strong> &nbsp; {{$trow->title_name}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Departement:</strong> &nbsp; Group</li>
+                                        class="text-dark">Departement:</strong> &nbsp; {{$drow->dept_name}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Address:</strong> &nbsp; BTJ</li>
+                                        class="text-dark">Address:</strong> &nbsp; {{$row->adress}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">KTP
-                                        No:</strong> &nbsp; 1234567890987654</li>
+                                        No:</strong> &nbsp; {{$row->no_ktp}}</li>
                             </ul>
                         </div>
                     </div>
@@ -79,10 +82,10 @@
                         <div class="card-body p-3">
                             <ul class="list-group">
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Birth
-                                        Date:</strong> &nbsp; Feb 13 2023</li>
+                                        Date:</strong> &nbsp; {{$row->birth_date}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile
                                         Phone:</strong>
-                                    &nbsp; (62)11 2222 3344</li>
+                                    &nbsp; {{$row->mobile_phone}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
                                         class="text-dark">eMail:</strong>
                                     &nbsp; {{ Auth::user()->email }}</li>
@@ -113,11 +116,11 @@
                             <div class="card-body position-relative z-index-1 p-3">
                                 <i class="material-icons text-white p-2">wifi</i>
                                 <h5 class="text-white mt-4 mb-5 pb-2">
-                                    1234&nbsp;&nbsp;&nbsp;5678&nbsp;&nbsp;&nbsp;9098&nbsp;&nbsp;&nbsp;765</h5>
+                                {{$row->account_number}}</h5>
                                 <div class="d-flex">
                                     <div class="d-flex">
                                         <div class="me-4">
-                                            <h6 class="text-white mb-0">Abdi Rabbani</h6>
+                                            <h6 class="text-white mb-0">{{$row->account_name}}</h6>
                                         </div>
                                     </div>
                                     <div class="ms-auto w-20 d-flex align-items-end justify-content-end">
@@ -133,7 +136,7 @@
                     <div class="row">
                         <div class="col-md-6 col-6">
                             <div class="card">
-                                <div class="card-header mx-4 p-3 text-center">
+                                <div class="card-header mx-4 p-3 d-flex justify-content-center">
                                     <div
                                         class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
                                         <i class="material-icons opacity-10">account_balance</i>
@@ -142,13 +145,13 @@
                                 <div class="card-body pt-0 p-3 text-center">
                                     <h6 class="text-center mb-0">Bank Name</h6>
                                     <hr class="horizontal dark my-3">
-                                    <h5 class="mb-0">BCA</h5>
+                                    <h5 class="mb-0">{{$row->bank_name}}</h5>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-6">
                             <div class="card">
-                                <div class="card-header mx-4 p-3 text-center">
+                                <div class="card-header mx-4 p-3 d-flex justify-content-center">
                                     <div
                                         class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
                                         <i class="material-icons opacity-10">account_balance_wallet</i>
@@ -157,7 +160,7 @@
                                 <div class="card-body pt-0 p-3 text-center">
                                     <h6 class="text-center mb-0">Tax Status</h6>
                                     <hr class="horizontal dark my-3">
-                                    <h5 class="mb-0">M2</h5>
+                                    <h5 class="mb-0">{{$row->tax_status}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -178,37 +181,35 @@
                                     <div>
                                         <ul class="list-group">
                                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                                    class="text-dark">Bank Name:</strong> &nbsp; BCA
+                                                    class="text-dark">Bank Name:</strong> &nbsp; {{$row->bank_name}}
                                             </li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">Account Name:</strong>
-                                                &nbsp; Abdi Rabbani Syahandri</li>
+                                                &nbsp; {{$row->account_name}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">Account Number:</strong>
-                                                &nbsp; 1234567890</li>
+                                                &nbsp; {{$row->account_number}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                                    class="text-dark">Tax Status:</strong> &nbsp; M2</li>
+                                                    class="text-dark">Tax Status:</strong> &nbsp; {{$row->tax_status}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">BPJS Ketenagakerjaan Membership No:</strong>
-                                                &nbsp; 12345678909</li>
+                                                &nbsp; {{$row->bpjs_ketenagakerjaan_member_no}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">BPJS Kesehatan Membership No:</strong> &nbsp;
-                                                12345678909</li>
+                                                    {{$row->bpjs_kesehatan_member_no}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                                    class="text-dark">NPWP:</strong> &nbsp; 123456789098765</li>
+                                                    class="text-dark">NPWP:</strong> &nbsp; {{$row->npwp}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                                    class="text-dark">Health Insurance Member No:</strong> &nbsp; 2126-A
+                                                    class="text-dark">Health Insurance Member No:</strong> &nbsp; {{$row->health_insurance_number}}
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div>
-                                        f
-                                    </div>
-                                </div>
                             </div>
                         </div>
+                        @endforeach
+                        @endforeach
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -295,26 +296,26 @@
 </div>
 <div class="container-fluid py-4 col-md-12">
     <div class="card-body px-0 pb-2">
-                    <div class="table-responsive p-0">
-                        <table class="table">
-                            <thead>
-                                <th>Family</th>
-                                <th>Gender</th>
-                                <th>Relation</th>
-                                <th>DOB</th>
-                                <th>BPJS Kesehatan Membership No</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="px-4 py-4">pp</td>
-                                    <td class="px-4 py-4">pp</td>
-                                    <td class="px-4 py-4">pp</td>
-                                    <td class="px-4 py-4">pp</td>
-                                    <td class="px-4 py-4">pp</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div class="table-responsive p-0">
+            <table class="table">
+                <thead>
+                    <th>Family</th>
+                    <th>Gender</th>
+                    <th>Relation</th>
+                    <th>DOB</th>
+                    <th>BPJS Kesehatan Membership No</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-4">pp</td>
+                        <td class="px-4 py-4">pp</td>
+                        <td class="px-4 py-4">pp</td>
+                        <td class="px-4 py-4">pp</td>
+                        <td class="px-4 py-4">pp</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 @endsection
