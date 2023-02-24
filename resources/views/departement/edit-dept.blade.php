@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container col-md-12 m-4 justify-content-start d-flex">
-    <form action="{{url('edit-dept', $dept->id)}}" class="d-flex row ms-0" method="post">
+    <form action="{{route('departement.update', $dept->id)}}" class="d-flex row ms-0" method="post">
         @csrf
         {{method_field('PUT')}}
         <label for="editName" class="ms-0">Dept Name</label>

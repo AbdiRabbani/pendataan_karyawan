@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <form class="form" action="/simpan-user" method="post">
+    <form class="form" action="{{route('user.store')}}" method="post">
         @csrf
 
         <label for="formContent">

@@ -16,12 +16,10 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('id_bio')->unsigned();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('level', ['admin', 'employee'])->default('employee');
             $table->string('password');
-            $table->foreign('id_bio')->references('id')->on('biodata')->onDelete('cascade')->default('0');
             $table->rememberToken();
             $table->timestamps();
         });

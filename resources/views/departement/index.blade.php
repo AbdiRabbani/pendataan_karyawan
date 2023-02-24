@@ -22,10 +22,10 @@
                                 <tr>
                                     <td class="d-flex px-4 py-4">{{$row->dept_name}}</td>
                                     <td class="align-middle text-center text-sm">
-                                        <form action="{{ url('dept/delete/'.$row->id) }}" method="post">
+                                        <form action="{{ route('departement.destroy',$row->id) }}" method="post">
                                             @csrf
                                             {{method_field('DELETE')}}
-                                            <a href="{{ url('dept/edit/'.$row->id) }}" class="btn btn-success">EDIT</a>
+                                            <a href="{{ route('departement.edit',$row->id) }}" class="btn btn-success">EDIT</a>
                                             <button type="submit" class="btn btn-danger">DELETE</button>
                                         </form>
                                     </td>
@@ -43,7 +43,7 @@
                     <i class="fa fa-folder-plus"></i>
                 </h6>
             </div>
-            <form action="simpan-dept" method="post">
+            <form action="{{route('departement.store')}}" method="post">
                 @csrf
                 <div class="mb-3 justify-content-start d-flex row">
                     <label for="dept-input" class="form-label">dept Name</label>
