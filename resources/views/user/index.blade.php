@@ -29,10 +29,11 @@
                                 <td class="px-4">{{$row->level}}</td>
                                 <td class="px-4">{{$row->email}}</td>
                                 <td class="align-middle text-center text-sm">
-                                        <form action="{{route('user.destroy', $row->id)}}">
+                                        <form action="{{route('user.destroy', $row->id)}}" method="post">
                                             @csrf
                                             {{method_field('DELETE')}}
-                                            <a href="{{route('user.edit', $row->id)}}" class="btn btn-warning">Edit</a>
+                                            <a href="{{route('user.edit', $row->id)}}" class="btn btn-warning">
+                                                Edit</a>
                                             <a href="#" class="btn btn-success">Detail</a>
                                             <button type="submit" class="btn btn-danger">DELETE</button>
                                         </form>

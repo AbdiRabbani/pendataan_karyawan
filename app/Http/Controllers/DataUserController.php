@@ -123,9 +123,8 @@ class DataUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $usr = User::findOrFail($id);
-        $data = $request->all();
-        $usr->update($data);
+        $user = User::find($id);
+        $user->update($request->all());
         return redirect('/user');
     }
 
@@ -139,6 +138,6 @@ class DataUserController extends Controller
     {
         $data = User::find($id);
         $data->delete();
-        return back();
+        return redirect('/user');
     }
 }
