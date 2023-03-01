@@ -43,3 +43,5 @@ Route::resource('/departement', 'DeptController');
 
 });
 
+Route::resource('/leave','LeaveController');
+

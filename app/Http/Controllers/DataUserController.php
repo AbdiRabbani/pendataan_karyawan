@@ -27,7 +27,8 @@ class DataUserController extends Controller
     public function index()
     {
         $user = User::all();
-        return view('user.index', compact('user'));
+        $bio = Biodata::get('id_user');
+        return view('user.index', compact('user', 'bio'));
     }
 
     /**
@@ -96,7 +97,11 @@ class DataUserController extends Controller
      */
     public function show($id)
     {
-        //
+        $title = Title::all();
+        $dept = Dept::all();
+        $user = User::where('id', $id)->get()->all();
+        $bio = Biodata::where('id_user', $id)->get()->all();
+        return view('user.user-detail', compact('user','title', 'dept', 'bio'));
     }
 
     /**

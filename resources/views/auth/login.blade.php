@@ -21,6 +21,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="{{asset('template/css/material-dashboard.css?v=3.0.4')}}" rel="stylesheet" />
+
+    <style>
+        .bg-light-green {
+            background: #22a78c;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-200">
@@ -33,7 +39,7 @@
                     <div class="col-lg-4 col-md-8 col-12 mx-auto">
                         <div class="card z-index-0 fadeIn3 fadeInBottom">
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <div class="bg-light-green shadow-lg border-radius-lg py-3 pe-1">
                                     <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sign in</h4>
                                     <div class="row mt-3">
                                         <div class="col-2 text-center ms-auto">
@@ -57,11 +63,11 @@
                             <div class="card-body">
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
-                                    <div class="input-group input-group-outline my-3">
+                                    <div class="input-group input-group-outline my-3 row">
                                         <label for="email"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                            class="text-md-right me-2">{{ __('E-Mail Address') }}</label>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <input id="email" type="email"
                                                 class="form-control @error('email') is-invalid @enderror" name="email"
                                                 value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -74,11 +80,11 @@
                                         </div>
                                     </div>
 
-                                    <div class="input-group input-group-outline mb-3">
+                                    <div class="input-group input-group-outline mb-3 row">
                                         <label for="password"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                            class="text-md-right me-2">{{ __('Password') }}</label>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
                                                 name="password" required autocomplete="current-password">
@@ -90,20 +96,10 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="form-check form-switch d-flex align-items-center mb-3">
-                                        <input class="form-check-input" type="checkbox" id="rememberMe"  {{ old('remember') ? 'checked' : '' }}>
-                                        <label class="form-check-label mb-0 ms-3" for="rememberMe"> {{ __('Remember Me') }}</label>
-                                    </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="bg-light-green p-2 rounded border text-white px-3">
                                             {{ __('Sign In') }}
                                         </button>
-
-                                        @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                        @endif
                                     </div>
                                 </form>
                             </div>

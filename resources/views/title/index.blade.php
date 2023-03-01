@@ -6,7 +6,7 @@
         <div class="col-6">
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
+                    <div class="bg-light-green shadow-primary border-radius-lg pt-4 pb-3 row">
                         <h6 class="text-white text-capitalize ps-3 col-md-10">Title table</h6>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
         </div>
         <div class="col-4">
             <div class="card-header justify-content-end d-flex">
-                <h6 class="bg-gradient-primary text-white p-2 rounded">Add Title
+                <h6 class="bg-light-green text-white p-2 rounded">Add Title
                     <i class="fa fa-folder-plus"></i>
                 </h6>
             </div>
@@ -50,7 +50,7 @@
                     <input name="title_name" type="text" class="form-control border p-2" id="title-input">
                 </div>
                 <div class="mb-3 justify-content-start d-flex row">
-                    <button type="submit" class="btn bg-gradient-primary">Submit</button>
+                    <button type="submit" class="bg-light-green p-2 rounded border text-white">Submit</button>
                 </div>
             </form>
         </div>

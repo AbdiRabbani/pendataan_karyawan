@@ -6,7 +6,7 @@
         <div class="col-12">
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
+                    <div class="bg-light-green shadow-primary border-radius-lg pt-4 pb-3 row">
                         <h6 class="text-white text-capitalize ps-3 col-md-10">Users table</h6>
                         <h6 class="text-white text-capitalize ps-3 col-md-2 align-middle text-sm text-center">
                             <a class="text-white" href="/user/create"><i class="fa fa-user-plus"></i>Tambah User</a>
@@ -19,7 +19,7 @@
                             <thead>
                                 <th>Nama</th>
                                 <th>Level</th>
-                                <th>Email</th>
+                                <th>E-Mail</th>
                                 <th class="text-center">Action</th>
                             </thead>
                         <tbody>
@@ -33,8 +33,9 @@
                                             @csrf
                                             {{method_field('DELETE')}}
                                             <a href="{{route('user.edit', $row->id)}}" class="btn btn-warning">
-                                                Edit</a>
-                                            <a href="#" class="btn btn-success">Detail</a>
+                                               Edit or Add Biodata
+                                            </a>
+                                            <a href="{{route('user.show', $row->id)}}" class="btn btn-success">Detail</a>
                                             <button type="submit" class="btn btn-danger">DELETE</button>
                                         </form>
                                     </td>

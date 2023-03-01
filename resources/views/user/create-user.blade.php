@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-md-12 px-5 d-flex justify-content-end">
-            <input type="submit" class="btn btn-success align-end">
+            <input type="submit" class="bg-light-green p-2 px-3 rounded border text-white align-end align-end">
         </div>
     </form>
 </div>

@@ -5,7 +5,7 @@
 <div class="container-fluid px-2 px-md-4">
     <div class="page-header min-height-300 border-radius-xl mt-4"
         style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
-        <span class="mask  bg-gradient-primary  opacity-6"></span>
+        <span class="mask  bg-light-green  opacity-6"></span>
     </div>
     @foreach($bio as $row)
     <div class="card card-body mx-3 mx-md-4 mt-n6">
@@ -97,7 +97,7 @@
     </div>
 </div>
 <div class="container-fluid py-4 px-2 px-md-4">
-    <div class="col-md-12 bg-gradient-primary p-2 px-3 mb-3 rounded">
+    <div class="col-md-12 bg-light-green p-2 px-3 mb-3 rounded">
         <h2 class="text-white">
             Payroll
         </h2>
@@ -137,14 +137,14 @@
                             <div class="card">
                                 <div class="card-header mx-4 p-3 d-flex justify-content-center">
                                     <div
-                                        class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
+                                        class="icon icon-shape icon-lg bg-light-green shadow text-center border-radius-lg">
                                         <i class="material-icons opacity-10">account_balance</i>
                                     </div>
                                 </div>
                                 <div class="card-body pt-0 p-3 text-center">
                                     <h6 class="text-center mb-0">Bank Name</h6>
                                     <hr class="horizontal dark my-3">
-                                    <h5 class="mb-0">-</h5>
+                                    <h5 class="mb-0">{{$row->bank_name}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +152,7 @@
                             <div class="card">
                                 <div class="card-header mx-4 p-3 d-flex justify-content-center">
                                     <div
-                                        class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
+                                        class="icon icon-shape icon-lg bg-light-green shadow text-center border-radius-lg">
                                         <i class="material-icons opacity-10">account_balance_wallet</i>
                                     </div>
                                 </div>
@@ -180,7 +180,7 @@
                                     <div>
                                         <ul class="list-group">
                                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                                    class="text-dark">Bank Name:</strong> &nbsp; -
+                                                    class="text-dark">Bank Name:</strong> &nbsp; {{$row->bank_name}}
                                             </li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">Account Name:</strong>
@@ -320,7 +320,7 @@
 <div class="container-fluid px-2 px-md-4">
     <div class="page-header min-height-300 border-radius-xl mt-4 text-center"
         style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
-        <span class="mask  bg-gradient-primary p-6 text-white h1">Harap Lengkapi Biodata Anda Terlebih Dahulu!!!</span>
+        <span class="mask bg-light-green p-6 text-white h1">Harap Lengkapi Biodata Anda Terlebih Dahulu!!!</span>
     </div>
     <div class="card card-body mx-3 mx-md-4 mt-n6">
         <div class="row gx-4 mb-2">
@@ -411,7 +411,7 @@
     </div>
 </div>
 <div class="container-fluid py-4 px-2 px-md-4">
-    <div class="col-md-12 bg-gradient-primary p-2 px-3 mb-3 rounded">
+    <div class="col-md-12 bg-light-green p-2 px-3 mb-3 rounded">
         <h2 class="text-white">
             Payroll
         </h2>
@@ -451,7 +451,7 @@
                             <div class="card">
                                 <div class="card-header mx-4 p-3 d-flex justify-content-center">
                                     <div
-                                        class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
+                                        class="icon icon-shape icon-lg bg-light-green shadow text-center border-radius-lg">
                                         <i class="material-icons opacity-10">account_balance</i>
                                     </div>
                                 </div>
@@ -466,7 +466,7 @@
                             <div class="card">
                                 <div class="card-header mx-4 p-3 d-flex justify-content-center">
                                     <div
-                                        class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
+                                        class="icon icon-shape icon-lg bg-light-green shadow text-center border-radius-lg">
                                         <i class="material-icons opacity-10">account_balance_wallet</i>
                                     </div>
                                 </div>
@@ -617,11 +617,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="px-4 py-4">pp</td>
-                        <td class="px-4 py-4">pp</td>
-                        <td class="px-4 py-4">pp</td>
-                        <td class="px-4 py-4">pp</td>
-                        <td class="px-4 py-4">pp</td>
+                        <td class="px-4 py-4">-</td>
+                        <td class="px-4 py-4">-</td>
+                        <td class="px-4 py-4">-</td>
+                        <td class="px-4 py-4">-</td>
+                        <td class="px-4 py-4">-</td>
                     </tr>
                 </tbody>
             </table>
