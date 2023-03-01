@@ -86,7 +86,7 @@
                                         Phone:</strong>
                                     &nbsp; {{$row->mobile_phone}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">eMail:</strong>
+                                        class="text-dark">E-Mail:</strong>
                                     &nbsp; {{ Auth::user()->email }}</li>
                             </ul>
                         </div>
