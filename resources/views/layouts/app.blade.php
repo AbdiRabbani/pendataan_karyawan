@@ -136,16 +136,15 @@
                             <a class="nav-link" href="#" role="button">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-                            <!-- <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                     {{ __('Logout') }}
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </li>
-          </ul> -->
+                        </li>
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="si    denav-toggler-line"></i>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -175,29 +174,29 @@
 
     </main>
 
-                <!--   Core JS Files   -->
-                <script src="{{asset('template/js/core/popper.min.js')}}"></script>
-                <script src="{{asset('template/js/core/bootstrap.min.js')}}"></script>
-                <script src="{{asset('template/js/plugins/perfect-scrollbar.min.js')}}"></script>
-                <script src="{{asset('template/js/plugins/smooth-scrollbar.min.js')}}"></script>
+    <!--   Core JS Files   -->
+    <script src="{{asset('template/js/core/popper.min.js')}}"></script>
+    <script src="{{asset('template/js/core/bootstrap.min.js')}}"></script>
+    <script src="{{asset('template/js/plugins/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{asset('template/js/plugins/smooth-scrollbar.min.js')}}"></script>
 
-                <script>
-                    var win = navigator.platform.indexOf('Win') > -1;
-                    if (win && document.querySelector('#sidenav-scrollbar')) {
-                        var options = {
-                            damping: '0.5'
-                        }
-                        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-                    }
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
 
-                </script>
+    </script>
 
-                <!-- Github buttons -->
-                <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
 
-                <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-                <script src="{{asset('template/js/material-dashboard.min.js?v=3.0.4')}}"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="{{asset('template/js/material-dashboard.min.js?v=3.0.4')}}"></script>
 </body>
 
 </html>
