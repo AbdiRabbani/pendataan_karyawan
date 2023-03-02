@@ -24,16 +24,15 @@ Route::get('/home', 'HomeController@index');
 Route::get('/profile', 'ProfileController@index');
 
 
-
-//Biodata
-Route::resource('/biodata','DataBioController');
-
-
 Route::middleware(['auth', 'admin'])->group(function() {
 
 // User
 Route::resource('/user', 'DataUserController');
-Route::post('simpan-data', 'DataUserController@biostore');
+Route::post('biodata-save', 'DataUserController@biostore');
+Route::get('/user/biodata/{id}', 'DataUserController@biocreate');
+
+//Biodata
+Route::resource('/biodata','DataBioController');
 
 // Title
 Route::resource('/title', 'TitleController');

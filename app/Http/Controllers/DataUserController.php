@@ -27,7 +27,7 @@ class DataUserController extends Controller
     public function index()
     {
         $user = User::all();
-        $bio = Biodata::get('id_user');
+        $bio = Biodata::all();
         return view('user.index', compact('user', 'bio'));
     }
 
@@ -59,24 +59,35 @@ class DataUserController extends Controller
         return redirect('/user');
     }
 
+
+    //biodatafunction
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function biocreate($id)
+    {
+        $user = User::find($id);
+        $bio = Biodata::all();
+        $title = Title::all();
+        $dept = Dept::all();
+        return view('biodata.biodata-create', compact('user', 'bio', 'title', 'dept'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function biostore(Request $request)
     {
         $input = $request->all();
-
-        // requirement column nama dan photo
         $validator = Validator::make($input,[
             'photo' => 'required|image|mimes:jpeg,jpg,png|max:10240'
         ]);
 
-
-        // // validasi untuk data yang apabila gagal, maka akan keluar error data tidak valid
-        // if($validator->fails())
-        // {  
-        //     // return redirect()->route('kategori.create')->withErrors($validator)->withInput();
-        //     return 'Data Tidak Valid';
-        // }
-
-        // kondisi input foto (file)
         if($request->hasFile('photo'))
         {
             $destination_path = 'public/images/profile'; //path tempat penyimpanan (storage/public/images/profile)
@@ -89,6 +100,9 @@ class DataUserController extends Controller
         return redirect('/user');
     }
 
+    //endbiodatafunction
+
+
     /**
      * Display the specified resource.
      *
@@ -97,11 +111,7 @@ class DataUserController extends Controller
      */
     public function show($id)
     {
-        $title = Title::all();
-        $dept = Dept::all();
-        $user = User::where('id', $id)->get()->all();
-        $bio = Biodata::where('id_user', $id)->get()->all();
-        return view('user.user-detail', compact('user','title', 'dept', 'bio'));
+        //
     }
 
     /**
@@ -112,11 +122,8 @@ class DataUserController extends Controller
      */
     public function edit($id)
     {
-        $title = Title::all();
-        $dept = Dept::all();
         $user = User::findOrFail($id);
-        $bio = Biodata::where('id_user', $id)->get()->all();
-        return view('user.edit-user', compact('user', 'title', 'dept', 'bio'));
+        return view('user.user-edit', compact('user'));
     }
 
     /**
@@ -129,7 +136,11 @@ class DataUserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $user->update($request->all());
+        $user->update([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
         return redirect('/user');
     }
 

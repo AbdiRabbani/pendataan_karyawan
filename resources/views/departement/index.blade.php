@@ -40,7 +40,7 @@
         <div class="col-4">
             <div class="card-header justify-content-end d-flex">
                 <h6 class="bg-light-green text-white p-2 rounded">Add deptartement
-                    <i class="fa fa-folder-plus"></i>
+                <i class="bi bi-building-fill-add"></i>
                 </h6>
             </div>
             <form action="{{route('departement.store')}}" method="post">

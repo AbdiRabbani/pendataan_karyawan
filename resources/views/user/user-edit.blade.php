@@ -1,19 +1,21 @@
 @extends('layouts.app')
+
 @section('content')
 <div class="container">
-    <form class="form" action="{{route('user.store')}}" method="post">
+    <form class="form" action="{{route('user.update', $user->id)}}" method="post">
         @csrf
+        {{method_field('PUT')}}
         <label for="formContent">
             <h3>User</h3>
         </label>
         <div class="col-md-12 row d-flex">
             <div class="col-md-4" id="formContent">
                 <label for="dataName">Name</label>
-                <input name="name" type="text" id="dataName" class="border p-2 form-control mb-3">
+                <input name="name" type="text" id="dataName" class="border p-2 form-control mb-3" value="{{$user->name}}">
                 <label for="dataEmail">EMail</label>
-                <input name="email" type="email" id="dataEmail" class="border p-2 form-control mb-3">
+                <input name="email" type="email" id="dataEmail" class="border p-2 form-control mb-3" value="{{$user->email}}">
                 <label for="dataPassword">Password</label>
-                <input name="password" type="password" id="dataPassword" class="border p-2 form-control mb-3">
+                <input name="password" type="password" id="dataPassword" class="border p-2 form-control mb-3" placeholder="Input new password">
             </div>
         </div>
 

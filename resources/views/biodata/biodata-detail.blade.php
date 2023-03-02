@@ -3,11 +3,10 @@
 @section('content')
 <div class="container-fluid px-2 px-md-4">
     <div class="page-header min-height-300 border-radius-xl mt-4"
-        style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
-        <span class="mask  bg-gradient-primary  opacity-6"></span>
+        style="background-image: url('https://indonesia.fact-link.com/home/toyotomo/00000003-00000001.jpg');">
+        <span class="mask  bg-light-green  opacity-6"></span>
     </div>
     @foreach($bio as $row)
-    @foreach($user as $urow)
     <div class="card card-body mx-3 mx-md-4 mt-n6">
         <div class="row gx-4 mb-2">
             <div class="col-auto">
@@ -19,10 +18,10 @@
             <div class="col-auto my-auto">
                 <div class="h-100">
                     <h5 class="mb-1">
-                        {{ $urow->name }} <span class="caret"></span>
+                        {{ $row->user->name }} <span class="caret"></span>
                     </h5>
                     <p class="mb-0 font-weight-normal text-sm">
-                        {{$title[$row->id_title - 1]->title_name}}
+                        {{$row->title->title_name}}
                     </p>
                 </div>
             </div>
@@ -47,16 +46,16 @@
                         <div class="card-body p-3">
                             <ul class="list-group">
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">Name:</strong> &nbsp; {{ Auth::user()->name }}</li>
+                                        class="text-dark">Name:</strong> &nbsp; {{ $row->user->name }}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
                                         class="text-dark">NIP:</strong> &nbsp; {{$row->nip}}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Join
                                         Date:</strong> &nbsp; {{$row->join_date}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Title:</strong> &nbsp; {{$title[$row->id_title - 1]->title_name}}</li>
+                                        class="text-dark">Title:</strong> &nbsp; {{$row->title->title_name}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Departement:</strong> &nbsp; {{$dept[$row->id_title - 1]->dept_name}}</li>
+                                        class="text-dark">Departement:</strong> &nbsp; {{$row->dept->dept_name}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
                                         class="text-dark">Address:</strong> &nbsp; {{$row->adress}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">KTP
@@ -87,7 +86,7 @@
                                     &nbsp; {{$row->mobile_phone}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
                                         class="text-dark">eMail:</strong>
-                                    &nbsp; {{ Auth::user()->email }}</li>
+                                    &nbsp; {{ $row->user->email }}</li>
                             </ul>
                         </div>
                     </div>
@@ -314,6 +313,5 @@
         </div>
     </div>
 </div>
-@endforeach
 @endforeach
 @endsection

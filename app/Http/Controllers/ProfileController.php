@@ -17,10 +17,7 @@ class ProfileController extends Controller
     }
 
     public function index() {
-        $user = User::all();
         $bio = Biodata::where('id_user', auth()->user()->id)->get()->all();
-        $title = Title::all();
-        $dept = Dept::all();
-        return view('profile.index', compact('bio', 'user', 'title', 'dept'));
+        return view('profile.index', compact('bio'));
     }
 }

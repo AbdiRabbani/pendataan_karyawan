@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use App\Biodata;
+use App\Title;
+use App\Dept;
 
 class DataBioController extends Controller
 {
@@ -14,7 +17,8 @@ class DataBioController extends Controller
      */
     public function index()
     {
-        return view('');
+        $bio = Biodata::all();
+        return view('biodata.index', compact('bio'));
     }
 
     /**
@@ -35,32 +39,7 @@ class DataBioController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-
-        // requirement column nama dan photo
-        $validator = Validator::make($input,[
-            'photo' => 'required|image|mimes:jpeg,jpg,png|max:10240'
-        ]);
-
-
-        // // validasi untuk data yang apabila gagal, maka akan keluar error data tidak valid
-        // if($validator->fails())
-        // {  
-        //     // return redirect()->route('kategori.create')->withErrors($validator)->withInput();
-        //     return 'Data Tidak Valid';
-        // }
-
-        // kondisi input foto (file)
-        if($request->hasFile('photo'))
-        {
-            $destination_path = 'public/images/profile'; //path tempat penyimpanan (storage/public/images/profile)
-            $image = $request -> file('photo'); //mengambil request column photo
-            $image_name = $image->getClientOriginalName(); //memberikan nama gambar yang akan disimpan di foto
-            $path = $request->file('photo')->storeAs($destination_path, $image_name); //mengirimkan foto ke folder store
-            $input['photo'] = $image_name; //mengirimkan ke database
-        }
-        Biodata::create($input);
-        return redirect('/user');
+        //
     }
 
     /**
@@ -71,7 +50,8 @@ class DataBioController extends Controller
      */
     public function show($id)
     {
-        //
+        $bio = Biodata::where('id', $id)->get()->all();
+        return view('biodata.biodata-detail', compact('bio'));
     }
 
     /**
@@ -82,7 +62,10 @@ class DataBioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bio = Biodata::find($id);
+        $title = Title::all();
+        $dept = Dept::all();
+        return view('biodata.biodata-edit', compact('bio', 'title', 'dept'));
     }
 
     /**
@@ -94,7 +77,9 @@ class DataBioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bio = Biodata::findOrFail($id);
+        $bio->update($request->all());
+        return redirect('/biodata');
     }
 
     /**

@@ -9,7 +9,7 @@
                     <div class="bg-light-green shadow-primary border-radius-lg pt-4 pb-3 row">
                         <h6 class="text-white text-capitalize ps-3 col-md-10">Users table</h6>
                         <h6 class="text-white text-capitalize ps-3 col-md-2 align-middle text-sm text-center">
-                            <a class="text-white" href="/user/create">Tambah User <i class="bi bi-person-plus-fill"></i></a>
+                            <a class="text-white" href="/user/create"><i class="fa fa-user-plus"></i>Tambah User</a>
                         </h6>
                     </div>
                 </div>
@@ -17,28 +17,31 @@
                     <div class="table-responsive p-0">
                         <table class="table table-hover">
                             <thead>
-                                <th>Nama</th>
-                                <th>Level</th>
-                                <th>E-Mail</th>
+                                <th>Profile</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Title</th>
                                 <th class="text-center">Action</th>
                             </thead>
                         <tbody>
-                            @foreach($user as $row)
+                            @foreach($bio as $row)
                             <tr>
-                                <td class="px-4">{{$row->name}}</td>
-                                <td class="px-4">{{$row->level}}</td>
-                                <td class="px-4">{{$row->email}}</td>
+                                <td class="px-4">
+                                    <img src="{{asset('/storage/images/profile/'.$row->photo)}}" alt="" class="img-thumbnail" width="70px">
+                                </td>
+                                <td class="px-4">{{$row->user->name}}</td>
+                                <td class="px-4">{{$row->user->email}}</td>
+                                <td class="px-4">{{$row->title->title_name}}</td>
                                 <td class="align-middle text-center text-sm">
-                                        <form action="{{route('user.destroy', $row->id)}}" method="post">
+                                        <form action="{{route('biodata.destroy', $row->id)}}" method="post">
                                             @csrf
                                             {{method_field('DELETE')}}
-                                            <a href="{{route('user.edit', $row->id)}}" class="btn btn-warning">
+                                            <a href="{{route('biodata.edit', $row->id)}}" class="btn btn-warning">
                                                Edit
                                             </a>
-                                            <a href="{{url('/user/biodata', $row->id)}}" class="btn btn-success">
-                                               Add Biodata
+                                            <a href="{{route('biodata.show', $row->id)}}" class="btn btn-success">
+                                               Detail
                                             </a>
-                                            <button type="submit" class="btn btn-danger">DELETE</button>
                                         </form>
                                     </td>
                             </tr>
@@ -50,4 +53,4 @@
             </div>
         </div>
     </div>
-    @endsection
+@endsection

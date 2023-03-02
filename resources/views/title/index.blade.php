@@ -39,8 +39,8 @@
         </div>
         <div class="col-4">
             <div class="card-header justify-content-end d-flex">
-                <h6 class="bg-light-green text-white p-2 rounded">Add Title
-                    <i class="fa fa-folder-plus"></i>
+                <h6 class="bg-light-green text-white p-2 rounded">Add Title 
+                <i class="bi bi-building-fill-add"></i>
                 </h6>
             </div>
             <form action="{{route('title.store')}}" method="post">

@@ -11,16 +11,16 @@ class Biodata extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\User', 'id_user');
     }
 
     public function title()
     {
-        return $this->belongsTo(Title::class);
+        return $this->belongsTo('App\Title', 'id_title');
     }
 
     public function dept()
     {
-        return $this->belongsTo(Dept::class);
+        return $this->belongsTo('App\Dept', 'id_dept');
     }
 }
