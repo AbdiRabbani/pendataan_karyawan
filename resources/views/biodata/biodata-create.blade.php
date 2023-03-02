@@ -70,8 +70,8 @@
                 <input name="tax_status" type="text" id="dataTax" class="border p-2 form-control mb-3">
                 <label for="dataNPWP">NPWP</label>
                 <input name="npwp" type="number" id="dataNPWP" class="border p-2 form-control mb-3">
-                <label for="dataHIN">Health Insurance Number</label>
-                <input name="health_insurance_number" type="number" id="dataHIN" class="border p-2 form-control mb-3">
+                <label for="dataHIN">Health Insurance Member No</label>
+                <input name="health_insurance_number" type="text" id="dataHIN" class="border p-2 form-control mb-3">
             </div>
         </div>
 

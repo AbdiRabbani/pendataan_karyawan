@@ -21,7 +21,7 @@ class CreateFamilyTable extends Migration
             $table->string('status');
             $table->string('dob');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('bpjs_kesehatan_member_no');
+            $table->string('bpjs_kesehatan_member_no');
             $table->timestamps();
         });
     }

@@ -7,9 +7,9 @@
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-light-green shadow-primary border-radius-lg pt-4 pb-3 row">
-                        <h6 class="text-white text-capitalize ps-3 col-md-10">Users table</h6>
+                        <h6 class="text-white text-capitalize ps-3 col-md-10 text-center">Users</h6>
                         <h6 class="text-white text-capitalize ps-3 col-md-2 align-middle text-sm text-center">
-                            <a class="text-white" href="/user/create">Tambah User <i class="bi bi-person-plus-fill"></i></a>
+                            <a class="text-white" href="{{route('user.create')}}">Tambah User <i class="bi bi-person-plus-fill"></i></a>
                         </h6>
                     </div>
                 </div>
@@ -35,8 +35,11 @@
                                             <a href="{{route('user.edit', $row->id)}}" class="btn btn-warning">
                                                Edit
                                             </a>
-                                            <a href="{{url('/user/biodata', $row->id)}}" class="btn btn-success">
+                                            <a href="{{url('user/biodata', $row->id)}}" class="btn btn-success">
                                                Add Biodata
+                                            </a>
+                                            <a href="#" class="btn btn-success">
+                                               Add Family
                                             </a>
                                             <button type="submit" class="btn btn-danger">DELETE</button>
                                         </form>

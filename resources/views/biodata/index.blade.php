@@ -7,10 +7,7 @@
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-light-green shadow-primary border-radius-lg pt-4 pb-3 row">
-                        <h6 class="text-white text-capitalize ps-3 col-md-10">Users table</h6>
-                        <h6 class="text-white text-capitalize ps-3 col-md-2 align-middle text-sm text-center">
-                            <a class="text-white" href="/user/create"><i class="fa fa-user-plus"></i>Tambah User</a>
-                        </h6>
+                        <h6 class="text-white text-capitalize ps-3 col-md-10">Biodata</h6>
                     </div>
                 </div>
                 <div class="card-body px-0 pb-2">

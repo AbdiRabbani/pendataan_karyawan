@@ -59,50 +59,6 @@ class DataUserController extends Controller
         return redirect('/user');
     }
 
-
-    //biodatafunction
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function biocreate($id)
-    {
-        $user = User::find($id);
-        $bio = Biodata::all();
-        $title = Title::all();
-        $dept = Dept::all();
-        return view('biodata.biodata-create', compact('user', 'bio', 'title', 'dept'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function biostore(Request $request)
-    {
-        $input = $request->all();
-        $validator = Validator::make($input,[
-            'photo' => 'required|image|mimes:jpeg,jpg,png|max:10240'
-        ]);
-
-        if($request->hasFile('photo'))
-        {
-            $destination_path = 'public/images/profile'; //path tempat penyimpanan (storage/public/images/profile)
-            $image = $request -> file('photo'); //mengambil request column photo
-            $image_name = $image->getClientOriginalName(); //memberikan nama gambar yang akan disimpan di foto
-            $path = $request->file('photo')->storeAs($destination_path, $image_name); //mengirimkan foto ke folder store
-            $input['photo'] = $image_name; //mengirimkan ke database
-        }
-        Biodata::create($input);
-        return redirect('/user');
-    }
-
-    //endbiodatafunction
-
-
     /**
      * Display the specified resource.
      *

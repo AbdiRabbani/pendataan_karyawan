@@ -28,11 +28,12 @@ Route::middleware(['auth', 'admin'])->group(function() {
 
 // User
 Route::resource('/user', 'DataUserController');
-Route::post('biodata-save', 'DataUserController@biostore');
-Route::get('/user/biodata/{id}', 'DataUserController@biocreate');
 
 //Biodata
 Route::resource('/biodata','DataBioController');
+
+Route::post('biodata-save', 'DataBioController@store');
+Route::get('/user/biodata/{id}', 'DataBioController@create');
 
 // Title
 Route::resource('/title', 'TitleController');
