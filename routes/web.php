@@ -23,7 +23,7 @@ Route::get('/home', 'HomeController@index');
 //profile
 Route::get('/profile', 'ProfileController@index');
 
-
+//Admin Middleware
 Route::middleware(['auth', 'admin'])->group(function() {
 
 // User
@@ -31,8 +31,7 @@ Route::resource('/user', 'DataUserController');
 
 //Biodata
 Route::resource('/biodata','DataBioController');
-
-Route::post('biodata-save', 'DataBioController@store');
+Route::post('biodata-save/{id}', 'DataBioController@store');
 Route::get('/user/biodata/{id}', 'DataBioController@create');
 
 // Title
@@ -40,6 +39,9 @@ Route::resource('/title', 'TitleController');
 
 //Departement
 Route::resource('/departement', 'DeptController');
+
+//Family
+Route::resource('/family', 'FamilyController');
 
 });
 

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form class="form" action="{{url('biodata-save')}}" method="post" enctype="multipart/form-data">
+    <form class="form" action="{{url('biodata-save', $user->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         <label for="formContent">
             <h3>Profile</h3>
@@ -17,6 +17,7 @@
                 <label for="dataEmail">E-Mail</label>
                 <input type="email" id="dataEmail" class="border p-2 form-control mb-3" value="{{$user->email}}"
                     disabled>
+
                 <label for="dataPhoneP">Mobile Phone</label>
                 <input name="mobile_phone" type="number" id="dataPhone" class="border p-2 form-control mb-3">
                 <label for="dataPhoto">Reupload Your Photo</label>
@@ -38,6 +39,11 @@
                     @foreach($dept as $drow)
                     <option value="{{$drow->id}}">{{$drow->dept_name}}</option>
                     @endforeach
+                </select>
+                <label for="dataStatus">Status</label>
+                <select name="status" class="form-select p-2 border mb-3" id="dataStatus">
+                    <option>Permanent</option>
+                    <option>Contract</option>
                 </select>
                 <label for="dataAdress">Adress</label>
                 <input name="adress" type="text" id="dataAdress" class="border p-2 form-control mb-3">
@@ -75,9 +81,53 @@
             </div>
         </div>
 
+        <label for="formContent" class="d-flex col-md-12 d-flex justify-content-between">
+            <h3 class="col-md-6">Family</h3>
+            <div class="col-md-6 d-flex justify-content-end">
+                <button type="button" class="btn btn-success" id="btn-add">Add Family</button>
+            </div>
+        </label>
+
+        <div class="col-md-12 row d-flex" id="table">
+        </div>
+
         <div class="col-md-12 px-5 d-flex justify-content-end">
             <input type="submit" class="bg-light-green p-2 rounded border text-white align-end px-3">
         </div>
     </form>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    var i = 0;
+    $('#btn-add').click(function () {
+        i++;
+        $('#table').append(
+            `
+            <div class="col-md-6 mt-5 op" id="formContent">
+                <label for="dataName">Name</label>
+                <input name="fname[]" type="text" id="dataFamilyName" class="border p-2 form-control mb-3">
+                <input name="id_fuser[]" type="integer" class="border p-2 form-control mb-3" hidden value="{{$user->id}}">
+                <label for="dataAccount">Gender</label>
+                <select name="gender[]" class="form-select p-2 border mb-3" id="dataGender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <label for="dataAccount">Relation</label>
+                <input name="relation[]" type="text" id="dataRelation" class="border p-2 form-control mb-3">
+                <label for="dataBPJSK">DOB</label>
+                <input name="dob[]" type="date" id="dataDob" class="border p-2 form-control mb-3">
+                <label for="dataBPJS">BPJS Kesehatan Member No</label>
+                <input name="f_bpjs_kesehatan_member_no[]" type="number" id="dataBPJS" class="border p-2 form-control mb-3">\
+                <button type="button" class="btn btn-danger remove-table-row">Remove</button>
+            </div>
+            `
+        );
+    });
+
+    $(document).on('click', '.remove-table-row', function() {
+        $(this).parents('.op').remove();
+    });
+
+</script>
 @endsection

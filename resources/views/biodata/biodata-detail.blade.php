@@ -2,26 +2,25 @@
 
 @section('content')
 <div class="container-fluid px-2 px-md-4">
-    <div class="page-header min-height-300 border-radius-xl mt-4"
-        style="background-image: url('https://indonesia.fact-link.com/home/toyotomo/00000003-00000001.jpg');">
+    <div class="page-header max-height-300 border-radius-xl mt-4 d-flex justify-content-center align-items-center" height="300px">
+        <img src="{{asset('template/img/company-pict.png')}}" alt="toyotomo company image" height="800px">
         <span class="mask  bg-light-green  opacity-6"></span>
     </div>
-    @foreach($bio as $row)
     <div class="card card-body mx-3 mx-md-4 mt-n6">
         <div class="row gx-4 mb-2">
             <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
-                    <img src="{{asset('/storage/images/profile/'.$row->photo)}}" alt="profile_image"
-                        class="w-100 border-radius-lg shadow-sm">
+                    <img src="{{asset('/storage/images/profile/'.$bio->photo)}}" alt="profile_image"
+                            class="w-100 border-radius-lg shadow-sm">
                 </div>
             </div>
             <div class="col-auto my-auto">
                 <div class="h-100">
                     <h5 class="mb-1">
-                        {{ $row->user->name }} <span class="caret"></span>
+                        {{ $bio->user->name }} <span class="caret"></span>
                     </h5>
                     <p class="mb-0 font-weight-normal text-sm">
-                        {{$row->title->title_name}}
+                        {{$bio->title->title_name}}
                     </p>
                 </div>
             </div>
@@ -46,20 +45,20 @@
                         <div class="card-body p-3">
                             <ul class="list-group">
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">Name:</strong> &nbsp; {{ $row->user->name }}</li>
+                                        class="text-dark">Name:</strong> &nbsp; {{ $bio->user->name }}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">NIP:</strong> &nbsp; {{$row->nip}}
+                                        class="text-dark">NIP:</strong> &nbsp; {{$bio->nip}}
                                 </li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Status:
+                                </strong> &nbsp; {{$bio->status}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Join
-                                        Date:</strong> &nbsp; {{$row->join_date}}</li>
+                                        Date:</strong> &nbsp; {{$bio->join_date}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Title:</strong> &nbsp; {{$row->title->title_name}}</li>
+                                        class="text-dark">Title:</strong> &nbsp; {{$bio->title->title_name}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Departement:</strong> &nbsp; {{$row->dept->dept_name}}</li>
+                                        class="text-dark">Departement:</strong> &nbsp; {{$bio->dept->dept_name}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Address:</strong> &nbsp; {{$row->adress}}</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">KTP
-                                        No:</strong> &nbsp; {{$row->no_ktp}}</li>
+                                        class="text-dark">Address:</strong> &nbsp; {{$bio->adress}}</li>
                             </ul>
                         </div>
                     </div>
@@ -79,14 +78,16 @@
                         </div>
                         <div class="card-body p-3">
                             <ul class="list-group">
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">KTP
+                                        No:</strong> &nbsp; {{$bio->no_ktp}}</li>
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Birth
-                                        Date:</strong> &nbsp; {{$row->birth_date}}</li>
+                                        Date:</strong> &nbsp; {{$bio->birth_date}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile
                                         Phone:</strong>
-                                    &nbsp; {{$row->mobile_phone}}</li>
+                                    &nbsp; {{$bio->mobile_phone}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
                                         class="text-dark">eMail:</strong>
-                                    &nbsp; {{ $row->user->email }}</li>
+                                    &nbsp; {{ $bio->user->email }}</li>
                             </ul>
                         </div>
                     </div>
@@ -114,11 +115,11 @@
                             <div class="card-body position-relative z-index-1 p-3">
                                 <i class="material-icons text-white p-2">wifi</i>
                                 <h5 class="text-white mt-4 mb-5 pb-2">
-                                {{$row->account_number}}</h5>
+                                {{$bio->account_number}}</h5>
                                 <div class="d-flex">
                                     <div class="d-flex">
                                         <div class="me-4">
-                                            <h6 class="text-white mb-0">{{$row->account_name}}</h6>
+                                            <h6 class="text-white mb-0">{{$bio->account_name}}</h6>
                                         </div>
                                     </div>
                                     <div class="ms-auto w-20 d-flex align-items-end justify-content-end">
@@ -143,7 +144,7 @@
                                 <div class="card-body pt-0 p-3 text-center">
                                     <h6 class="text-center mb-0">Bank Name</h6>
                                     <hr class="horizontal dark my-3">
-                                    <h5 class="mb-0">{{$row->bank_name}}</h5>
+                                    <h5 class="mb-0">{{$bio->bank_name}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -158,7 +159,7 @@
                                 <div class="card-body pt-0 p-3 text-center">
                                     <h6 class="text-center mb-0">Tax Status</h6>
                                     <hr class="horizontal dark my-3">
-                                    <h5 class="mb-0">{{$row->tax_status}}</h5>
+                                    <h5 class="mb-0">{{$bio->tax_status}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -179,26 +180,26 @@
                                     <div>
                                         <ul class="list-group">
                                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                                    class="text-dark">Bank Name:</strong> &nbsp; {{$row->bank_name}}
+                                                    class="text-dark">Bank Name:</strong> &nbsp; {{$bio->bank_name}}
                                             </li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">Account Name:</strong>
-                                                &nbsp; {{$row->account_name}}</li>
+                                                &nbsp; {{$bio->account_name}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">Account Number:</strong>
-                                                &nbsp; {{$row->account_number}}</li>
+                                                &nbsp; {{$bio->account_number}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                                    class="text-dark">Tax Status:</strong> &nbsp; {{$row->tax_status}}</li>
+                                                    class="text-dark">Tax Status:</strong> &nbsp; {{$bio->tax_status}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">BPJS Ketenagakerjaan Membership No:</strong>
-                                                &nbsp; {{$row->bpjs_ketenagakerjaan_member_no}}</li>
+                                                &nbsp; {{$bio->bpjs_ketenagakerjaan_member_no}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">BPJS Kesehatan Membership No:</strong> &nbsp;
-                                                    {{$row->bpjs_kesehatan_member_no}}</li>
+                                                    {{$bio->bpjs_kesehatan_member_no}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                                    class="text-dark">NPWP:</strong> &nbsp; {{$row->npwp}}</li>
+                                                    class="text-dark">NPWP:</strong> &nbsp; {{$bio->npwp}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                                    class="text-dark">Health Insurance Member No:</strong> &nbsp; {{$row->health_insurance_number}}
+                                                    class="text-dark">Health Insurance Member No:</strong> &nbsp; {{$bio->health_insurance_number}}
                                             </li>
                                         </ul>
                                     </div>
@@ -301,17 +302,28 @@
                     <th>BPJS Kesehatan Membership No</th>
                 </thead>
                 <tbody>
+                    @if($family)
+                    @foreach($family as $row)
                     <tr>
-                        <td class="px-4 py-4">pp</td>
-                        <td class="px-4 py-4">pp</td>
-                        <td class="px-4 py-4">pp</td>
-                        <td class="px-4 py-4">pp</td>
-                        <td class="px-4 py-4">pp</td>
+                        <td class="px-4 py-4">{{$row->fname}}</td>
+                        <td class="px-4 py-4">{{$row->gender}}</td>
+                        <td class="px-4 py-4">{{$row->relation}}</td>
+                        <td class="px-4 py-4">{{$row->dob}}</td>
+                        <td class="px-4 py-4">{{$row->f_bpjs_kesehatan_member_no}}</td>
                     </tr>
+                    @endforeach
+                    @else
+                    <tr>
+                        <td class="px-4 py-4">-</td>
+                        <td class="px-4 py-4">-</td>
+                        <td class="px-4 py-4">-</td>
+                        <td class="px-4 py-4">-</td>
+                        <td class="px-4 py-4">-</td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-@endforeach
 @endsection

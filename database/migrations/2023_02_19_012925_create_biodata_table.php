@@ -20,6 +20,7 @@ class CreateBiodataTable extends Migration
             $table->integer('id_dept')->unsigned();
             $table->string('nip');
             $table->date('join_date');
+            $table->string('status');
             $table->text('adress');
             $table->string('no_ktp')->zerofill();
             $table->date('birth_date');

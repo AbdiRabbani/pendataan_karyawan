@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use App\Title;
+use App\Family;
 use App\Dept;
 use App\Biodata;
 use Validator;
@@ -109,6 +110,12 @@ class DataUserController extends Controller
     public function destroy($id)
     {
         $data = User::find($id);
+        $dataF = Family::find($id);
+        
+        if($dataF) {
+            Family::whereIn('id', $id)->delete();
+        }
+
         $data->delete();
         return redirect('/user');
     }

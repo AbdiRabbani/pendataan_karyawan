@@ -12,7 +12,7 @@
                 </div>
                 <div class="card-body px-0 pb-2">
                     <div class="table-responsive p-0">
-                        <table class="table table-hover">
+                        <table class="table">
                             <thead>
                                 <th>Profile</th>
                                 <th>Name</th>
@@ -24,9 +24,12 @@
                             @foreach($bio as $row)
                             <tr>
                                 <td class="px-4">
-                                    <img src="{{asset('/storage/images/profile/'.$row->photo)}}" alt="" class="img-thumbnail" width="70px">
+                                    <img src="{{asset('/storage/images/profile/'.$row->photo)}}" alt="" class="img-thumbnail" width="80px" height="80px">
                                 </td>
-                                <td class="px-4">{{$row->user->name}}</td>
+                                <td class="px-4 d-flex row">
+                                    <p>{{$row->user->name}}</p>
+                                    <p>{{$row->status}}</p>
+                                </td>
                                 <td class="px-4">{{$row->user->email}}</td>
                                 <td class="px-4">{{$row->title->title_name}}</td>
                                 <td class="align-middle text-center text-sm">

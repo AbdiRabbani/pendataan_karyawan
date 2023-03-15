@@ -14,14 +14,14 @@ class CreateFamilyTable extends Migration
     public function up()
     {
         Schema::create('family', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('id_user')->unsigned();
+            $table->increments('id');
+            $table->integer('id_fuser')->unsigned();
+            $table->string('fname');
             $table->string('gender');
-            $table->string('Relation');
-            $table->string('status');
-            $table->string('dob');
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->string('bpjs_kesehatan_member_no');
+            $table->string('relation');
+            $table->date('dob');
+            $table->string('f_bpjs_kesehatan_member_no');
+            $table->foreign('id_fuser')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

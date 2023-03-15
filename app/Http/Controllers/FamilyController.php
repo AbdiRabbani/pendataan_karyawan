@@ -79,6 +79,12 @@ class FamilyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $family = Family::where('main_id', $id);
+        // $bio = Biodata::where('id_user', $family->id);
+
+        $family->delete();
+
+        // return redirect('/biodata/$bio->id/edit');                               
+        return back();
     }
 }

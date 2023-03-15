@@ -45,6 +45,12 @@
                     <option value="{{$drow->id}}">{{$drow->dept_name}}</option>
                     @endforeach
                 </select>
+                <label for="dataStatus">Status</label>
+                <select name="status" class="form-select p-2 border mb-3" id="dataStatus">
+                    <option selected>{{$bio->status}}--current</option>
+                    <option>Permanent</option>
+                    <option>Contract</option>
+                </select>
                 <label for="dataAdress">Adress</label>
                 <input name="adress" type="text" id="dataAdress" class="border p-2 form-control mb-3"
                     value="{{$bio->adress}}">
@@ -85,10 +91,41 @@
                 <label for="dataNPWP">NPWP</label>
                 <input name="npwp" type="number" id="dataNPWP" class="border p-2 form-control mb-3"
                     value="{{$bio->npwp}}">
-                <label for="dataHIN">Health Insurance Number</label>
-                <input name="health_insurance_number" type="number" id="dataHIN" class="border p-2 form-control mb-3"
+                <label for="dataHIN">Health Insurance Member No</label>
+                <input name="health_insurance_number" type="string" id="dataHIN" class="border p-2 form-control mb-3"
                     value="{{$bio->health_insurance_number}}">
             </div>
+        </div>
+
+        <label for="formContent" class="d-flex col-md-12 d-flex justify-content-between">
+            <h3 class="col-md-6">Family</h3>
+            <div class="col-md-6 d-flex justify-content-end">
+                <button type="button" class="btn btn-success" id="btn-add">Add Family</button>
+            </div>
+        </label>
+
+        <div class="col-md-12 row d-flex" id="table">
+            @if($family)
+            @foreach($family as $row)
+            <div class="col-md-6 mt-5 op" id="formContent">
+                <label for="dataName">Name</label>
+                <input name="fname[]" type="text" id="dataFamilyName" class="border p-2 form-control mb-3" value="{{$row->fname}}">
+                <input name="id_fuser[]" type="integer" class="border p-2 form-control mb-3" hidden value="{{$row->id_fuser}}">
+                <label for="dataAccount">Gender</label>
+                <select name="gender[]" class="form-select p-2 border mb-3" id="dataGender">
+                    <option value="Male">{{$row->gender}}--current</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <label for="dataAccount">Relation</label>
+                <input name="relation[]" type="text" id="dataRelation" class="border p-2 form-control mb-3" value="{{$row->relation}}">
+                <label for="dataBPJSK">DOB</label>
+                <input name="dob[]" type="date" id="dataDob" class="border p-2 form-control mb-3" value="{{$row->dob}}">
+                <label for="dataBPJS">BPJS Kesehatan Member No</label>
+                <input name="f_bpjs_kesehatan_member_no[]" type="number" id="dataBPJS" class="border p-2 form-control mb-3" value="{{$row->f_bpjs_kesehatan_member_no}}">
+            </div>
+            @endforeach
+            @endif
         </div>
 
         <div class="col-md-12 px-5 d-flex justify-content-end">
@@ -96,4 +133,38 @@
         </div>
     </form>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    var i = 0;
+    $('#btn-add').click(function () {
+        i++;
+        $('#table').append(
+            `
+            <div class="col-md-6 mt-5 op" id="formContent">
+                <label for="dataName">Name</label>
+                <input name="fname[]" type="text" id="dataFamilyName" class="border p-2 form-control mb-3">
+                <input name="id[]" type="integer" class="border p-2 form-control mb-3" hidden value="{{$bio->id_user}}">
+                <label for="dataAccount">Gender</label>
+                <select name="gender[]" class="form-select p-2 border mb-3" id="dataGender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <label for="dataAccount">Relation</label>
+                <input name="relation[]" type="text" id="dataRelation" class="border p-2 form-control mb-3">
+                <label for="dataBPJSK">DOB</label>
+                <input name="dob[]" type="date" id="dataDob" class="border p-2 form-control mb-3">
+                <label for="dataBPJS">BPJS Kesehatan Member No</label>
+                <input name="f_bpjs_kesehatan_member_no[]" type="number" id="dataBPJS" class="border p-2 form-control mb-3">
+                <button type="button" class="btn btn-danger remove-table-row">Remove</button>
+            </div>
+            `
+        );
+    });
+
+    $(document).on('click', '.remove-table-row', function() {
+        $(this).parents('.op').remove();
+    });
+
+</script>
 @endsection
