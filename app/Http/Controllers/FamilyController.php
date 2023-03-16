@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Family;
 
 class FamilyController extends Controller
 {
@@ -34,7 +35,7 @@ class FamilyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -56,7 +57,8 @@ class FamilyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $family = Family::find($id);
+        return view('family.family-edit', compact('family'));
     }
 
     /**
@@ -68,7 +70,9 @@ class FamilyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $family = Family::find($id);
+        $family->update($request->all());
+        return back();
     }
 
     /**
@@ -78,13 +82,10 @@ class FamilyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        $family = Family::where('main_id', $id);
-        // $bio = Biodata::where('id_user', $family->id);
-
-        $family->delete();
-
-        // return redirect('/biodata/$bio->id/edit');                               
+    {   
+        $data = Family::find($id);
+        dd($data);
+        $data->delete();
         return back();
     }
 }

@@ -152,7 +152,6 @@ class DataBioController extends Controller
     public function update(Request $request, $id)
     {
         $bio = Biodata::find($id);
-        $family = Family::where('id', $bio->id_user)->get()->all();
 
         //Create Family
 

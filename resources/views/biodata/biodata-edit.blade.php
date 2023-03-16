@@ -109,20 +109,22 @@
             @foreach($family as $row)
             <div class="col-md-6 mt-5 op" id="formContent">
                 <label for="dataName">Name</label>
-                <input name="fname[]" type="text" id="dataFamilyName" class="border p-2 form-control mb-3" value="{{$row->fname}}">
-                <input name="id_fuser[]" type="integer" class="border p-2 form-control mb-3" hidden value="{{$row->id_fuser}}">
+                <input type="text" id="dataFamilyName" class="border p-2 form-control mb-3" value="{{$row->fname}}" disabled>
+                <input type="integer" class="border p-2 form-control mb-3" hidden value="{{$row->id_fuser}}" disabled>
                 <label for="dataAccount">Gender</label>
-                <select name="gender[]" class="form-select p-2 border mb-3" id="dataGender">
+                <select class="form-select p-2 border mb-3" id="dataGender" disabled>
                     <option value="Male">{{$row->gender}}--current</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
                 </select>
                 <label for="dataAccount">Relation</label>
-                <input name="relation[]" type="text" id="dataRelation" class="border p-2 form-control mb-3" value="{{$row->relation}}">
+                <input type="text" id="dataRelation" class="border p-2 form-control mb-3" value="{{$row->relation}}" disabled>
                 <label for="dataBPJSK">DOB</label>
-                <input name="dob[]" type="date" id="dataDob" class="border p-2 form-control mb-3" value="{{$row->dob}}">
+                <input type="date" id="dataDob" class="border p-2 form-control mb-3" value="{{$row->dob}}" disabled>
                 <label for="dataBPJS">BPJS Kesehatan Member No</label>
-                <input name="f_bpjs_kesehatan_member_no[]" type="number" id="dataBPJS" class="border p-2 form-control mb-3" value="{{$row->f_bpjs_kesehatan_member_no}}">
+                <input type="number" id="dataBPJS" class="border p-2 form-control mb-3" value="{{$row->f_bpjs_kesehatan_member_no}}" disabled>
+                <div class="col-md-12">
+                    <a type="button" class="btn btn-warning" href="{{route('family.edit', $row->id)}}" disabled>Edit</a>
+                    <a type="button" class="btn btn-danger" href="{{route('family.destroy', $row->id)}}" disabled>Delete</a>
+                </div>
             </div>
             @endforeach
             @endif
@@ -144,7 +146,7 @@
             <div class="col-md-6 mt-5 op" id="formContent">
                 <label for="dataName">Name</label>
                 <input name="fname[]" type="text" id="dataFamilyName" class="border p-2 form-control mb-3">
-                <input name="id[]" type="integer" class="border p-2 form-control mb-3" hidden value="{{$bio->id_user}}">
+                <input name="id_fuser[]" type="integer" class="border p-2 form-control mb-3" hidden value="{{$bio->id_user}}">
                 <label for="dataAccount">Gender</label>
                 <select name="gender[]" class="form-select p-2 border mb-3" id="dataGender">
                     <option value="Male">Male</option>
