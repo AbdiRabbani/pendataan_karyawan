@@ -12,6 +12,11 @@ use App\Family;
 
 class DataBioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,10 +36,11 @@ class DataBioController extends Controller
     public function create($id)
     {
         $user = User::find($id);
+        $usr = User::all();
         $bio = Biodata::all();
         $title = Title::all();
         $dept = Dept::all();
-        return view('biodata.biodata-create', compact('user', 'bio', 'title', 'dept'));
+        return view('biodata.biodata-create', compact('user', 'bio', 'title', 'dept', 'usr'));
     }
 
     /**
@@ -72,6 +78,7 @@ class DataBioController extends Controller
             'id_user' => $data['id_user'],
             'id_title' => $data['id_title'],
             'id_dept' => $data['id_dept'],
+            'superior' => $data['superior'],
             'nip' => $data['nip'],
             'photo' => $data['photo'],
             'join_date' => $data['join_date'],
