@@ -25,8 +25,8 @@
                                         <form action="{{ route('title.destroy', $row->id) }}" method="post">
                                             @csrf
                                             {{method_field('DELETE')}}
-                                            <a href="{{ route('title.edit', $row->id) }}" class="btn btn-success">EDIT</a>
-                                            <button type="submit" class="btn btn-danger">DELETE</button>
+                                            <a href="{{ route('title.edit', $row->id) }}" class="btn btn-warning">EDIT</a>
+                                            <button type="submit" class="btn btn-danger remove-data">DELETE</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -50,10 +50,54 @@
                     <input name="title_name" type="text" class="form-control border p-2" id="title-input">
                 </div>
                 <div class="mb-3 justify-content-start d-flex row">
-                    <button type="submit" class="bg-light-green p-2 rounded border text-white">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        $('.remove-data').click(function (event) {
+            var form = $(this).closest("form");
+            event.preventDefault();
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success m-1',
+                    cancelButton: 'btn btn-danger m-1'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                    swalWithBootstrapButtons.fire(
+                        'Deleted!',
+                        '',
+                        'success'
+                    )
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        '',
+                        'error'
+                    )
+                }
+            })
+        });
+
+    </script>
 @endsection

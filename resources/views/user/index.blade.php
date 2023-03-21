@@ -31,22 +31,21 @@
                                     <td class="px-4">{{$row->level}}</td>
                                     <td class="px-4">{{$row->email}}</td>
                                     <td class="align-middle text-center">
-                                        <form action="{{route('user.destroy', $row->id)}}" method="post">
+                                        <form method="POST" action="{{ route('user.destroy', $row->id) }}">
                                             @csrf
-                                            {{method_field('DELETE')}}
-                                            <a href="{{route('user.edit', $row->id)}}" class="btn btn-warning">
-                                                Edit
-                                            </a>
-
-                                            <button type="submit" class="btn btn-danger">DELETE</button>
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <a href="{{route('user.edit', $row->id)}}" class="btn btn-warning">Edit</a>
+                                            <button type="submit" class="btn btn-xs btn-danger btn-flat remove-data"
+                                                data-toggle="tooltip" title='Delete'>Delete</button>
                                         </form>
+
                                     </td>
-                                    <td class="text-center align-middle"> 
-                                    @if($row->biodata == 'false')
-                                            <a href="{{url('user/biodata', $row->id)}}" class="btn btn-success">
-                                                Add Biodata
-                                            </a>
-                                    @endif
+                                    <td class="text-center align-middle">
+                                        @if($row->biodata == 'false')
+                                        <a href="{{url('user/biodata', $row->id)}}" class="btn btn-success">
+                                            Add Biodata
+                                        </a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -57,4 +56,51 @@
             </div>
         </div>
     </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        $('.remove-data').click(function (event) {
+            var form = $(this).closest("form");
+            event.preventDefault();
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success m-1',
+                    cancelButton: 'btn btn-danger m-1'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                    swalWithBootstrapButtons.fire(
+                        'Deleted!',
+                        '',
+                        'success'
+                    )
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        '',
+                        'error'
+                    )
+                }
+            })
+        });
+
+    </script>
+
     @endsection
