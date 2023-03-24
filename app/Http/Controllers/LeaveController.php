@@ -93,8 +93,8 @@ class LeaveController extends Controller
      */
     public function destroy($id)
     {
-        $data = LeavePermit::wherein('id', $id);
-        $data->destroy();
+        $data = LeavePermit::find($id);
+        $data->delete();
         
         return redirect('/leave');
     }
