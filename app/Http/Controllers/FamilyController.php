@@ -88,8 +88,12 @@ class FamilyController extends Controller
      */
     public function destroy($id)
     {   
+        Family::where('id', $id)->delete(); 
+        return back();
+    }
+
+    public function delete($id) {
         $data = Family::find($id);
-        dd($data);
         $data->delete();
         return back();
     }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Biodata;
+use App\LeavePermit;
 
 class LeaveController extends Controller
 {
@@ -18,7 +20,10 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        return view('leave.index');
+        $leave = LeavePermit::where('id_luser', Auth()->user()->id)->get()->all();
+        $staff = LeavePermit::where('id_manager', Auth()->user()->id)->get()->all();
+        $user = Biodata::where('id_user', Auth()->user()->id)->get()->all();
+        return view('leave.index', compact('user', 'leave', 'staff'));
     }
 
     /**
@@ -28,7 +33,8 @@ class LeaveController extends Controller
      */
     public function create()
     {
-        //
+        $user = Biodata::where('id_user', Auth()->user()->id)->get()->all();
+        return view('leave.create-leave', compact('user'));
     }
 
     /**
@@ -39,7 +45,8 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        LeavePermit::create($request->all());
+        return redirect('/leave');
     }
 
     /**
@@ -73,7 +80,9 @@ class LeaveController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $leave = LeavePermit::find($id);
+        $leave->update($request->all());
+        return back();
     }
 
     /**
@@ -84,6 +93,9 @@ class LeaveController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = LeavePermit::wherein('id', $id);
+        $data->destroy();
+        
+        return redirect('/leave');
     }
 }

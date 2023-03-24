@@ -43,6 +43,8 @@ Route::resource('/departement', 'DeptController');
 //Family
 Route::resource('/family', 'FamilyController');
 
+//Leave Rules
+Route::resource('/rules', 'RulesController');
 });
 
 Route::resource('/leave','LeaveController');

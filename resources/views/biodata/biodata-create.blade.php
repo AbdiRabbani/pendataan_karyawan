@@ -20,11 +20,12 @@
 
                 <label for="dataPhoneP">Mobile Phone</label>
                 <input name="mobile_phone" type="number" id="dataPhone" class="border p-2 form-control mb-3">
+
                 <label for="dataPhoto">Reupload Your Photo</label>
                 <input name="photo" type="file" id="dataPhoto" class="border p-2 form-control mb-3">
                 <label for="dataNip">NIP</label>
                 <input name="nip" type="number" id="dataNip" class="border p-2 form-control mb-3">
-                <label for="dataDate">JoinDate</label>
+                <label for="dataDate">JoinDate *M/D/Y</label>
                 <input name="join_date" type="date" id="dataDate" class="border p-2 form-control mb-3">
             </div>
             <div class="col-md-4">
@@ -49,11 +50,20 @@
                 <input name="adress" type="text" id="dataAdress" class="border p-2 form-control mb-3">
                 <label for="dataKTP">KTP No</label>
                 <input name="no_ktp" type="number" id="dataKTP" class="border p-2 form-control mb-3">
-                <label for="dataHBD">Birth Date</label>
+                <label for="dataHBD">Birth Date *M/D/Y</label>
                 <input name="birth_date" type="date" id="dataHBD" class="border p-2 form-control mb-3">
             </div>
         </div>
 
+        <label for="formContent">
+            <h3>Leave Permit</h3>
+        </label>
+        <div class="col-md-12 row d-flex">
+            <div class="col-md-4" id="formContent">
+                <label for="dataLeave">Maximum Leave Per Year</label>
+                <input type="number" class="form-control mb-3 border p-2" name="leaveperyear">
+            </div>
+        </div>
         <label for="formContent">
             <h3>Payroll</h3>
         </label>
@@ -92,12 +102,15 @@
         </div>
 
         <div class="col-md-12 px-5 d-flex justify-content-end">
-            <input type="submit" class="bg-light-green p-2 rounded border text-white align-end px-3">
+            <input type="submit" class="bg-light-green p-2 rounded border text-white align-end px-3" id="submit">
         </div>
     </form>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+    integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script>
     var i = 0;
     $('#btn-add').click(function () {
@@ -115,7 +128,7 @@
                 </select>
                 <label for="dataAccount">Relation</label>
                 <input name="relation[]" type="text" id="dataRelation" class="border p-2 form-control mb-3">
-                <label for="dataBPJSK">DOB</label>
+                <label for="dataDob">DOB *M/D/Y</label>
                 <input name="dob[]" type="date" id="dataDob" class="border p-2 form-control mb-3">
                 <label for="dataBPJS">BPJS Kesehatan Member No</label>
                 <input name="f_bpjs_kesehatan_member_no[]" type="number" id="dataBPJS" class="border p-2 form-control mb-3">\
@@ -125,7 +138,7 @@
         );
     });
 
-    $(document).on('click', '.remove-table-row', function() {
+    $(document).on('click', '.remove-table-row', function () {
         $(this).parents('.op').remove();
     });
 

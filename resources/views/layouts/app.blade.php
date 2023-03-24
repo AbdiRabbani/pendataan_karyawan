@@ -15,7 +15,9 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css"
         integrity="sha512-YFENbnqHbCRmJt5d+9lHimyEMt8LKSNTMLSaHjvsclnZGICeY/0KYEeiHwD1Ux4Tcao0h60tdcMv+0GljvWyHg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
@@ -27,9 +29,11 @@
         .bg-light-green {
             background: #22a78c;
         }
+
         body {
             overflow-x: hidden;
         }
+
     </style>
 </head>
 
@@ -60,7 +64,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/leave">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-telephone-outbound-fill"></i>                        </div>
+                            <i class="bi bi-telephone-outbound-fill"></i> </div>
                         <span class="nav-link-text ms-1">Leave Permit</span>
                     </a>
                 </li>

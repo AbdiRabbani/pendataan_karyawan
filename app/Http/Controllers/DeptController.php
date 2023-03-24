@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Dept;
+use App\User;
 
 class DeptController extends Controller
 {
@@ -20,7 +21,9 @@ class DeptController extends Controller
     public function index()
     {
         $dept = Dept::all();
-        return view('departement.index', compact('dept'));
+        $manager = User::where('level', 'manager')->get()->all();
+        $supervisor = User::where('level', 'supervisor')->get()->all();
+        return view('departement.index', compact('dept', 'manager', 'supervisor'));
     }
 
     /**

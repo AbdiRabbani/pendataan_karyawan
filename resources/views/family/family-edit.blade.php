@@ -9,7 +9,7 @@
     <input name="id_fuser" type="integer" class="border p-2 form-control mb-3" hidden value="{{$family->id_fuser}}">
     <label for="dataAccount">Gender</label>
     <select name="gender" class="form-select p-2 border mb-3" id="dataGender">
-        <option value="Male">{{$family->gender}}--current</option>
+        <option value="{{$family->gender}}">{{$family->gender}}--current</option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
     </select>

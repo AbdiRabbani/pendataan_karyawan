@@ -35,7 +35,6 @@
                                 <td class="align-middle text-center text-sm">
                                         <form action="{{route('biodata.destroy', $row->id)}}" method="post">
                                             @csrf
-                                            {{method_field('DELETE')}}
                                             <a href="{{route('biodata.edit', $row->id)}}" class="btn btn-warning">
                                                Edit
                                             </a>
@@ -53,4 +52,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

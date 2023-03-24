@@ -14,13 +14,13 @@
                     <div class="table-responsive p-0">
                         <table class="table">
                             <thead>
-                                <th>Dept Name</th>
+                                <th>Departement Name (Manager)</th>
                                 <th class="align-middle text-center text-sm">Action</th>
                             </thead>
                             <tbody>
                                 @foreach($dept as $row)
                                 <tr>
-                                    <td class="d-flex px-4 py-4">{{$row->dept_name}}</td>
+                                    <td class="d-flex px-4 py-4">{{$row->dept_name}} ({{$row->user_manager->name}})</td>
                                     <td class="align-middle text-center text-sm">
                                         <form action="{{ route('departement.destroy',$row->id) }}" method="post">
                                             @csrf
@@ -46,8 +46,22 @@
             <form action="{{route('departement.store')}}" method="post">
                 @csrf
                 <div class="mb-3 justify-content-start d-flex row">
-                    <label for="dept-input" class="form-label">dept Name</label>
-                    <input name="dept_name" type="text" class="form-control border p-2" id="dept-input">
+                    <label for="dept-input" class="form-label">Departement Name</label>
+                    <input name="dept_name" type="text" class="form-control border p-2 mb-3" id="dept-input">
+                    
+                    <label for="manager-input" class="form-label">Manager Name</label>
+                    <select name="id_manager" id="manager-input" class="form-select p-2 border mb-3">
+                        @foreach($manager as $row)
+                        <option value="{{$row->id}}">{{$row->name}}</option>
+                        @endforeach
+                    </select>
+
+                    <label for="supervisor-input" class="form-label">Supervisor Name</label>
+                    <select name="id_supervisor" id="supervisor-input" class="form-select p-2 border mb-3">
+                        @foreach($supervisor as $row)
+                        <option value="{{$row->id}}">{{$row->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mb-3 justify-content-start d-flex row">
                     <button type="submit" class="btn btn-success">Submit</button>

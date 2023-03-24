@@ -29,7 +29,7 @@ class DataUserController extends Controller
     {
         $user = User::all();
         $bio = Biodata::all();
-        return view('user.index', compact('user', 'bio'));
+        return view('user.index', compact('user', 'bio'))->with('message', 'success add user');
     }
 
     /**
@@ -55,6 +55,7 @@ class DataUserController extends Controller
         User::create([
             'name' => $request['name'],
             'email' => $request['email'],
+            'level' => $request['level'],
             'password' => Hash::make($request['password']),
         ]);
         return redirect('/user');
@@ -96,6 +97,7 @@ class DataUserController extends Controller
         $user->update([
             'name' => $request['name'],
             'email' => $request['email'],
+            'level' => $request['level'],
             'password' => Hash::make($request['password']),
         ]);
         return redirect('/user');
@@ -110,10 +112,10 @@ class DataUserController extends Controller
     public function destroy($id)
     {
         $data = User::find($id);
-        $dataF = Family::find($id);
+        $dataF = Family::where('id_fuser', $id)->get()->all();
         
         if($dataF) {
-            Family::whereIn('id', $id)->delete();
+            Family::whereIn('id_fuser', $id)->delete();
         }
 
         $data->delete();

@@ -15,7 +15,7 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if(auth()->user()->level == 'employee'){
+        if(auth()->user()->level != 'admin'){
             abort(404); 
         }
 

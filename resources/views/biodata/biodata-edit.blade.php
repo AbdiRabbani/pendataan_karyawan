@@ -12,28 +12,32 @@
         <div class="col-md-12 row d-flex">
             <div class="col-md-4" id="formContent">
                 <label for="dataName">Name</label>
-                <input type="text" id="dataName" class="border p-2 form-control mb-3" value="{{$bio->user->name}}" disabled>
+                <input type="text" id="dataName" class="border p-2 form-control mb-3" value="{{$bio->user->name}}"
+                    disabled>
 
-                <input type="number" name="id_user" class="border p-2 form-control mb-3" value="{{$bio->user->id}}" hidden>
+                <input type="number" name="id_user" class="border p-2 form-control mb-3" value="{{$bio->user->id}}"
+                    hidden>
 
                 <label for="dataEmail">E-Mail</label>
                 <input type="email" id="dataEmail" class="border p-2 form-control mb-3" value="{{$bio->user->email}}"
                     disabled>
                 <label for="dataPhoneP">Mobile Phone</label>
-                <input name="mobile_phone" type="number" id="dataPhone" class="border p-2 form-control mb-3" value="{{$bio->mobile_phone}}">
+                <input name="mobile_phone" type="number" id="dataPhone" class="border p-2 form-control mb-3"
+                    value="{{$bio->mobile_phone}}">
                 <label for="dataPhoto">Reupload Your Photo</label>
-                <img src="{{asset('/storage/images/profile/'.$bio->photo)}}" class="img-thumbnail mb-2" width="100px" id="dataPhoto">
+                <img src="{{asset('/storage/images/profile/'.$bio->photo)}}" class="img-thumbnail mb-2" width="100px"
+                    id="dataPhoto">
                 <input name="photo" type="file" id="dataPhoto" class="border p-2 form-control mb-3">
                 <label for="dataNip">NIP</label>
                 <input name="nip" type="number" id="dataNip" class="border p-2 form-control mb-3" value="{{$bio->nip}}">
-                <label for="dataDate">JoinDate</label>
+                <label for="dataDate">JoinDate *M/D/Y</label>
                 <input name="join_date" type="date" id="dataDate" class="border p-2 form-control mb-3"
                     value="{{$bio->join_date}}">
             </div>
             <div class="col-md-4">
                 <label for="dataTitle">Title</label>
                 <select name="id_title" class="form-select p-2 border mb-3" id="dataTitle">
-                <option value="{{$bio->title->id}}" selected>{{$bio->title->title_name}}--current</option>
+                    <option value="{{$bio->title->id}}" selected>{{$bio->title->title_name}}--current</option>
                     @foreach($title as $trow)
                     <option value="{{$trow->id}}">{{$trow->title_name}}</option>
                     @endforeach
@@ -57,9 +61,19 @@
                 <label for="dataKTP">KTP No</label>
                 <input name="no_ktp" type="number" id="dataKTP" class="border p-2 form-control mb-3"
                     value="{{$bio->no_ktp}}">
-                <label for="dataHBD">Birth Date</label>
+                <label for="dataHBD">Birth Date *M/D/Y</label>
                 <input name="birth_date" type="date" id="dataHBD" class="border p-2 form-control mb-3"
                     value="{{$bio->birth_date}}">
+            </div>
+        </div>
+
+        <label for="formContent">
+            <h3>Leave Permit</h3>
+        </label>
+        <div class="col-md-12 row d-flex">
+            <div class="col-md-4" id="formContent">
+                <label for="dataLeave">Maximum Leave Per Year</label>
+                <input type="number" class="form-control mb-3 border p-2" name="leaveperyear" value="{{$bio->leaveperyear}}">
             </div>
         </div>
 
@@ -109,34 +123,45 @@
             @foreach($family as $row)
             <div class="col-md-6 mt-5 op" id="formContent">
                 <label for="dataName">Name</label>
-                <input type="text" id="dataFamilyName" class="border p-2 form-control mb-3" value="{{$row->fname}}" disabled>
+                <input type="text" id="dataFamilyName" class="border p-2 form-control mb-3" value="{{$row->fname}}"
+                    disabled>
                 <input type="integer" class="border p-2 form-control mb-3" hidden value="{{$row->id_fuser}}" disabled>
                 <label for="dataAccount">Gender</label>
                 <select class="form-select p-2 border mb-3" id="dataGender" disabled>
-                    <option value="Male">{{$row->gender}}--current</option>
+                    <option value="Male">{{$row->gender}}</option>
                 </select>
                 <label for="dataAccount">Relation</label>
-                <input type="text" id="dataRelation" class="border p-2 form-control mb-3" value="{{$row->relation}}" disabled>
-                <label for="dataBPJSK">DOB</label>
+                <input type="text" id="dataRelation" class="border p-2 form-control mb-3" value="{{$row->relation}}"
+                    disabled>
+                <label for="dataBPJSK">DOB *M/D/Y</label>
                 <input type="date" id="dataDob" class="border p-2 form-control mb-3" value="{{$row->dob}}" disabled>
                 <label for="dataBPJS">BPJS Kesehatan Member No</label>
-                <input type="number" id="dataBPJS" class="border p-2 form-control mb-3" value="{{$row->f_bpjs_kesehatan_member_no}}" disabled>
-                <div class="col-md-12">
-                    <a type="button" class="btn btn-warning" href="{{route('family.edit', $row->id)}}" disabled>Edit</a>
-                    <a type="button" class="btn btn-danger" href="{{route('family.destroy', $row->id)}}" disabled>Delete</a>
-                </div>
+                <input type="number" id="dataBPJS" class="border p-2 form-control mb-3"
+                    value="{{$row->f_bpjs_kesehatan_member_no}}" disabled>
+                <!-- <div class="col-md-12">
+                    <a type="button" class="btn btn-warning" href="{{route('family.edit', $row->id)}}">Edit</a>
+                </div> -->
+                <a href="{{route('family.edit', $row->id)}}" class="btn btn-warning">EDIT</a>
+                <a type="submit" class="btn btn-danger" id="remove-data">DELETE</a>
             </div>
             @endforeach
             @endif
         </div>
 
         <div class="col-md-12 px-5 d-flex justify-content-end">
-            <input type="submit" class="bg-light-green p-2 rounded border text-white align-end px-3">
+            <input type="submit" class="btn btn-success align-end px-3" id="submit">
         </div>
     </form>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     var i = 0;
     $('#btn-add').click(function () {
@@ -154,7 +179,7 @@
                 </select>
                 <label for="dataAccount">Relation</label>
                 <input name="relation[]" type="text" id="dataRelation" class="border p-2 form-control mb-3">
-                <label for="dataBPJSK">DOB</label>
+                <label for="dataDob">DOB *M/D/Y</label>
                 <input name="dob[]" type="date" id="dataDob" class="border p-2 form-control mb-3">
                 <label for="dataBPJS">BPJS Kesehatan Member No</label>
                 <input name="f_bpjs_kesehatan_member_no[]" type="number" id="dataBPJS" class="border p-2 form-control mb-3">
@@ -164,9 +189,8 @@
         );
     });
 
-    $(document).on('click', '.remove-table-row', function() {
+    $(document).on('click', '.remove-table-row', function () {
         $(this).parents('.op').remove();
     });
-
 </script>
 @endsection
