@@ -3,7 +3,8 @@
 @section('content')
 @if($bio)
 <div class="container-fluid px-2 px-md-4">
-    <div class="page-header max-height-300 border-radius-xl mt-4 d-flex justify-content-center align-items-center" height="300px">
+    <div class="page-header max-height-300 border-radius-xl mt-4 d-flex justify-content-center align-items-center"
+        height="300px">
         <img src="{{asset('template/img/company-pict.png')}}" alt="toyotomo company image" height="800px">
         <span class="mask  bg-light-green  opacity-6"></span>
     </div>
@@ -52,7 +53,7 @@
                                         class="text-dark">NIP:</strong> &nbsp; {{$row->nip}}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Status:
-                                </strong> &nbsp; {{$row->status}}</li>
+                                    </strong> &nbsp; {{$row->status}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Join
                                         Date:</strong> &nbsp; {{$row->join_date}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
@@ -88,8 +89,11 @@
                                         Phone:</strong>
                                     &nbsp; {{$row->mobile_phone}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">E-Mail:</strong>
+                                        class="text-dark">EMail:</strong>
                                     &nbsp; {{ Auth::user()->email }}</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Remaining
+                                        Leave:</strong>
+                                    &nbsp; {{ $row->leaveperyear }} Day</li>
                             </ul>
                         </div>
                     </div>
@@ -117,7 +121,7 @@
                             <div class="card-body position-relative z-index-1 p-3">
                                 <i class="material-icons text-white p-2">wifi</i>
                                 <h5 class="text-white mt-4 mb-5 pb-2">
-                                {{$row->account_number}}</h5>
+                                    {{$row->account_number}}</h5>
                                 <div class="d-flex">
                                     <div class="d-flex">
                                         <div class="me-4">
@@ -191,17 +195,19 @@
                                                     class="text-dark">Account Number:</strong>
                                                 &nbsp; {{$row->account_number}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                                    class="text-dark">Tax Status:</strong> &nbsp; {{$row->tax_status}}</li>
+                                                    class="text-dark">Tax Status:</strong> &nbsp; {{$row->tax_status}}
+                                            </li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">BPJS Ketenagakerjaan Membership No:</strong>
                                                 &nbsp; {{$row->bpjs_ketenagakerjaan_member_no}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">BPJS Kesehatan Membership No:</strong> &nbsp;
-                                                    {{$row->bpjs_kesehatan_member_no}}</li>
+                                                {{$row->bpjs_kesehatan_member_no}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">NPWP:</strong> &nbsp; {{$row->npwp}}</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                                    class="text-dark">Health Insurance Member No:</strong> &nbsp; {{$row->health_insurance_number}}
+                                                    class="text-dark">Health Insurance Member No:</strong> &nbsp;
+                                                {{$row->health_insurance_number}}
                                             </li>
                                         </ul>
                                     </div>
@@ -227,8 +233,8 @@
                     <th>BPJS Kesehatan Membership No</th>
                 </thead>
                 <tbody class="table-group-divider">
-                @if($family)
-                @foreach($family as $row)
+                    @if($family)
+                    @foreach($family as $row)
                     <tr>
                         <td class="px-4 py-4">{{$row->fname}}</td>
                         <td class="px-4 py-4">{{$row->gender}}</td>
@@ -236,16 +242,16 @@
                         <td class="px-4 py-4">{{$row->dob}}</td>
                         <td class="px-4 py-4">{{$row->f_bpjs_kesehatan_member_no}}</td>
                     </tr>
-                @endforeach
-                @else
-                <tr>
+                    @endforeach
+                    @else
+                    <tr>
                         <td class="px-4 py-4">-</td>
                         <td class="px-4 py-4">-</td>
                         <td class="px-4 py-4">-</td>
                         <td class="px-4 py-4">-</td>
                         <td class="px-4 py-4">-</td>
-                </tr>
-                @endif
+                    </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
@@ -302,7 +308,7 @@
                                         class="text-dark">NIP:</strong> &nbsp; -
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Status:
-                                </strong> &nbsp; -</li>
+                                    </strong> &nbsp; -</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Join
                                         Date:</strong> &nbsp; -</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
@@ -338,8 +344,11 @@
                                         Phone:</strong>
                                     &nbsp; -</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">eMail:</strong>
+                                        class="text-dark">EMail:</strong>
                                     &nbsp; {{ Auth::user()->email }}</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Remaining
+                                        Leave:</strong>
+                                    &nbsp; -</li>
                             </ul>
                         </div>
                     </div>
@@ -367,7 +376,7 @@
                             <div class="card-body position-relative z-index-1 p-3">
                                 <i class="material-icons text-white p-2">wifi</i>
                                 <h5 class="text-white mt-4 mb-5 pb-2">
-                                -</h5>
+                                    -</h5>
                                 <div class="d-flex">
                                     <div class="d-flex">
                                         <div class="me-4">
@@ -447,7 +456,7 @@
                                                 &nbsp; -</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">BPJS Kesehatan Membership No:</strong> &nbsp;
-                                                    -</li>
+                                                -</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">NPWP:</strong> &nbsp; -</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
