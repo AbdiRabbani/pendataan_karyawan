@@ -34,15 +34,15 @@
                                         <form method="POST" action="{{ route('user.destroy', $row->id) }}">
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
-                                            <a href="{{route('user.edit', $row->id)}}" class="btn btn-warning">Edit</a>
-                                            <button type="submit" class="btn btn-xs btn-danger btn-flat remove-data"
+                                            <a href="{{route('user.edit', $row->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                                            <button type="submit" class="btn btn-sm btn-danger btn-flat remove-data"
                                                 data-toggle="tooltip" title='Delete'>Delete</button>
                                         </form>
 
                                     </td>
                                     <td class="text-center align-middle">
                                         @if($row->biodata == 'false')
-                                        <a href="{{url('user/biodata', $row->id)}}" class="btn btn-success">
+                                        <a href="{{url('user/biodata', $row->id)}}" class="btn btn-success btn-sm">
                                             Add Biodata
                                         </a>
                                         @endif

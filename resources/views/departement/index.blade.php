@@ -25,8 +25,8 @@
                                         <form action="{{ route('departement.destroy',$row->id) }}" method="post">
                                             @csrf
                                             {{method_field('DELETE')}}
-                                            <a href="{{ route('departement.edit',$row->id) }}" class="btn btn-warning">EDIT</a>
-                                            <button type="submit" class="btn btn-danger remove-data">DELETE</button>
+                                            <a href="{{ route('departement.edit',$row->id) }}" class="btn btn-warning btn-sm">EDIT</a>
+                                            <button type="submit" class="btn btn-danger btn-sm remove-data">DELETE</button>
                                         </form>
                                     </td>
                                 </tr>

@@ -35,10 +35,10 @@
                                 <td class="align-middle text-center text-sm">
                                         <form action="{{route('biodata.destroy', $row->id)}}" method="post">
                                             @csrf
-                                            <a href="{{route('biodata.edit', $row->id)}}" class="btn btn-warning">
+                                            <a href="{{route('biodata.edit', $row->id)}}" class="btn btn-warning btn-sm">
                                                Edit
                                             </a>
-                                            <a href="{{route('biodata.show', $row->id)}}" class="btn btn-success">
+                                            <a href="{{route('biodata.show', $row->id)}}" class="btn btn-success btn-sm">
                                                Detail
                                             </a>
                                         </form>
