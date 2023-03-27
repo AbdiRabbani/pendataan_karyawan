@@ -165,6 +165,8 @@ class DataBioController extends Controller
         $data = $request->all();
         // dd($data);
 
+       Family::where('id_fuser', $bio->user->id)->delete();
+       
        if($request->fname){
             foreach ($data['fname'] as $item => $value) {
                 $data2 = array(

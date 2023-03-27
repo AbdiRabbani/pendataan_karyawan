@@ -123,26 +123,21 @@
             @foreach($family as $row)
             <div class="col-md-6 mt-5 op" id="formContent">
                 <label for="dataName">Name</label>
-                <input type="text" id="dataFamilyName" class="border p-2 form-control mb-3" value="{{$row->fname}}"
-                    disabled>
-                <input type="integer" class="border p-2 form-control mb-3" hidden value="{{$row->id_fuser}}" disabled>
+                <input name="fname[]" type="text" id="dataFamilyName" class="border p-2 form-control mb-3" value="{{$row->fname}}">
+                <input name="id_fuser[]" type="integer" class="border p-2 form-control mb-3" hidden value="{{$bio->id_user}}">
                 <label for="dataAccount">Gender</label>
-                <select class="form-select p-2 border mb-3" id="dataGender" disabled>
-                    <option value="Male">{{$row->gender}}</option>
+                <select name="gender[]" class="form-select p-2 border mb-3" id="dataGender">
+                    <option value="{{$row->gender}}">{{$row->gender}}--current</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
                 </select>
                 <label for="dataAccount">Relation</label>
-                <input type="text" id="dataRelation" class="border p-2 form-control mb-3" value="{{$row->relation}}"
-                    disabled>
-                <label for="dataBPJSK">DOB *M/D/Y</label>
-                <input type="date" id="dataDob" class="border p-2 form-control mb-3" value="{{$row->dob}}" disabled>
+                <input name="relation[]" type="text" id="dataRelation" class="border p-2 form-control mb-3" value="{{$row->relation}}">
+                <label for="dataDob">DOB *M/D/Y</label>
+                <input name="dob[]" type="date" id="dataDob" class="border p-2 form-control mb-3" value="{{$row->dob}}">
                 <label for="dataBPJS">BPJS Kesehatan Member No</label>
-                <input type="number" id="dataBPJS" class="border p-2 form-control mb-3"
-                    value="{{$row->f_bpjs_kesehatan_member_no}}" disabled>
-                <!-- <div class="col-md-12">
-                    <a type="button" class="btn btn-warning" href="{{route('family.edit', $row->id)}}">Edit</a>
-                </div> -->
-                <a href="{{route('family.edit', $row->id)}}" class="btn btn-warning">EDIT</a>
-                <a type="submit" class="btn btn-danger" id="remove-data">DELETE</a>
+                <input name="f_bpjs_kesehatan_member_no[]" type="number" id="dataBPJS" class="border p-2 form-control mb-3" value="{{$row->f_bpjs_kesehatan_member_no}}">
+                <button type="button" class="btn btn-danger remove-table-row">Remove</button>
             </div>
             @endforeach
             @endif
