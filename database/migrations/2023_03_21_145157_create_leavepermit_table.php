@@ -19,8 +19,9 @@ class CreateLeavepermitTable extends Migration
             $table->integer('id_manager')->unsigned();
             $table->integer('id_supervisor')->unsigned();
             $table->string('name');
-            $table->date('startLeave');
-            $table->date('endLeave');
+            $table->date('start_leave');
+            $table->date('end_leave');
+            $table->integer('total_leave')->default(0);
             $table->enum('status',['pending', 'approve', 'rejected']);
             $table->foreign('id_luser')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_manager')->references('id')->on('users')->onDelete('cascade');

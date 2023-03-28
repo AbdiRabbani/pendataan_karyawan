@@ -2,33 +2,33 @@
 
 @section('content')
 
-@if(Auth::user()->level == 'admin')
-<div class="container">
-    Saya adalah admin
-</div>
-@elseif($user)
+@if($annual_limit)
 <div class="container-fluid py-4">
-    @foreach($user as $row)
     <div class="col-md-12 d-flex justify-content-evenly">
         <div class="col-md-4 border rounded p-2 m-1">
             <p class="h6">Annual leave limit</p>
-            <p><span class="h4">{{$row->leaveperyear}}</span> day</p>
+            <p><span class="h4">{{$annual_limit}}</span> day</p>
         </div>
         <div class="col-md-4 border rounded p-2 m-1">
             <p class="h6">Your leave this year</p>
+            @if($leave)
+            @foreach($leave as $leaves)
+            <p><span class="h4">{{$leaves->total_leave}}</span> day</p>
+            @endforeach
+            @else
             <p><span class="h4">0</span> day</p>
+            @endif
         </div>
         <div class="col-md-4 border rounded p-2 m-1">
             <p class="h6">The rest of your leave this year</p>
-            <p><span class="h4">0</span> day</p>
+            <p><span class="h4">{{$result}}</span> day</p>
         </div>
     </div>
-    @endforeach
 
     <div class="col-md-12 pt-5">
         <div class="col-md-12 d-flex justify-content-between">
             <p class="h3">Your leave history</p>
-            <a href="{{route('leave.create')}}" class="btn btn-success">Add Leave Request</a>
+            <a href="{{route('leave.create')}}" class="btn btn-success btn-sm">Add Leave Request</a>
         </div>
         @foreach($leave as $row)
         <div class="col-md-10 border d-flex row p-2 my-3 mx-1">
@@ -46,11 +46,11 @@
             </div>
             <div class="col-md-12">
                 <p>
-                    {{$row->startLeave}} - {{$row->endLeave}}
+                    {{$row->start_leave}} - {{$row->end_leave}}
                     <span>
                         @php
-                        $date1=date_create($row->startLeave);
-                        $date2=date_create($row->endLeave);
+                        $date1=date_create($row->start_leave);
+                        $date2=date_create($row->end_leave);
                         $diff=date_diff($date1,$date2)->format('%d');
                         echo '(' . ($diff + 1) . ' Days)';
                         @endphp
@@ -82,15 +82,31 @@
 @else
 <div class="container-fluid py-4">
     <p>
-        Lengkapi biodata anda terlebih dahulu
+        Biodata anda tidak lengkap, harap hubungi admin segera..
     </p>
 </div>
 @endif
 
+<!-- Untuk approve cuti -->
 @if(Auth::user()->level != 'staff')
 <div class="container-fluid py-4">
     <div class="col-md-12 d-flex justify-content-between row">
-        <p class="h3">Your staff leave history</p>
+        <div class="col-md-12 d-flex justify-content-between">
+            @if(Auth::user()->level != 'admin')
+            <p class="h3 d-flex">
+                Your staff leave request
+            </p>
+            @else
+            <p class="h3 d-flex">
+                All staff leave request
+            </p>
+            <form action="{{url('/leave/deleteAll')}}" method="post">
+                @csrf
+                <input name="_method" type="hidden" value="DELETE">
+                <button class="btn btn-danger btn-sm remove-data">reset all</button>
+            </form>
+            @endif
+        </div>
 
         <div class="table-responsive p-0 m-2">
             <table class="table table-hover">
@@ -103,18 +119,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($staff as $row)
+                    @if(Auth::user()->level == 'manager')
+                    @foreach($manager as $row)
                     @if($row->status == "pending")
                     <tr>
                         <td>{{$row->user->name}}</td>
                         <td>{{$row->name}}</td>
                         <td>
                             <p>
-                                {{$row->startLeave}} - {{$row->endLeave}}
+                                {{$row->start_leave}} - {{$row->end_leave}}
                                 <span>
                                     @php
-                                    $date1=date_create($row->startLeave);
-                                    $date2=date_create($row->endLeave);
+                                    $date1=date_create($row->start_leave);
+                                    $date2=date_create($row->end_leave);
                                     $diff=date_diff($date1,$date2)->format('%d');
                                     echo '(' . ($diff + 1) . ' Days)';
                                     @endphp
@@ -126,18 +143,123 @@
                                 @csrf
                                 {{method_field('PUT')}}
                                 <input type="text" name="status" value="approve" hidden>
-                                <button class="btn btn-success m-1">Approve</button>
+
+                                <input type="text" name="total_leave" value="
+                                    @php
+                                    $date1=date_create($row->start_leave);
+                                    $date2=date_create($row->end_leave);
+                                    $diff=date_diff($date1,$date2)->format('%d');
+                                    echo intval($diff + 1);
+                                    @endphp
+                                " hidden>
+                                <button class="btn btn-success btn-sm m-1">Approve</button>
                             </form>
                             <form action="{{route('leave.update', $row->id)}}" method="post">
                                 @csrf
                                 {{method_field('PUT')}}
                                 <input type="text" name="status" value="rejected" hidden>
-                                <button class="btn btn-danger m-1">Reject</button>
+                                <button class="btn btn-danger btn-sm m-1">Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    @endif
+                    @endforeach
+
+                    @elseif(Auth::user()->level == 'supervisor')
+                    @foreach($supervisor as $row)
+                    @if($row->status == "pending")
+                    <tr>
+                        <td>{{$row->user->name}}</td>
+                        <td>{{$row->name}}</td>
+                        <td>
+                            <p>
+                                {{$row->start_leave}} - {{$row->end_leave}}
+                                <span>
+                                    @php
+                                    $date1=date_create($row->start_leave);
+                                    $date2=date_create($row->end_leave);
+                                    $diff=date_diff($date1,$date2)->format('%d');
+                                    echo '(' . ($diff + 1) . ' Days)';
+                                    @endphp
+                                </span>
+                            </p>
+                        </td>
+                        <td class="d-flex justify-content-center">
+                            <form action="{{route('leave.update', $row->id)}}" method="post">
+                                @csrf
+                                {{method_field('PUT')}}
+                                <input type="text" name="status" value="approve" hidden>
+
+                                <input type="text" name="total_leave" value="
+                                    @php
+                                    $date1=date_create($row->start_leave);
+                                    $date2=date_create($row->end_leave);
+                                    $diff=date_diff($date1,$date2)->format('%d');
+                                    echo intval($diff + 1);
+                                    @endphp
+                                " hidden>
+                                <button class="btn btn-success btn-sm m-1">Approve</button>
+                            </form>
+                            <form action="{{route('leave.update', $row->id)}}" method="post">
+                                @csrf
+                                {{method_field('PUT')}}
+                                <input type="text" name="status" value="rejected" hidden>
+                                <button class="btn btn-danger btn-sm m-1">Reject</button>
                             </form>
                         </td>
                     </tr>
                     @endif
                     @endforeach
+
+                    @elseif(Auth::user()->level == 'admin')
+                    @foreach($admin as $row)
+                    @if($row->status == "pending")
+                    <tr>
+                        <td>{{$row->user->name}}</td>
+                        <td>{{$row->name}}</td>
+                        <td>
+                            <p>
+                                {{$row->start_leave}} - {{$row->end_leave}}
+                                <span>
+                                    @php
+                                    $date1=date_create($row->start_leave);
+                                    $date2=date_create($row->end_leave);
+                                    $diff=date_diff($date1,$date2)->format('%d');
+                                    echo '(' . ($diff + 1) . ' Days)';
+                                    @endphp
+                                </span>
+                            </p>
+                        </td>
+                        <td class="d-flex justify-content-center">
+                            <form action="{{route('leave.update', $row->id)}}" method="post">
+                                @csrf
+                                {{method_field('PUT')}}
+                                <input type="text" name="status" value="approve" hidden>
+
+                                <input type="text" name="total_leave" value="
+                                    @php
+                                    $date1=date_create($row->start_leave);
+                                    $date2=date_create($row->end_leave);
+                                    $diff=date_diff($date1,$date2)->format('%d');
+                                    echo intval($diff + 1);
+                                    @endphp
+                                " hidden>
+                                <button class="btn btn-success btn-sm m-1">Approve</button>
+                            </form>
+                            <form action="{{route('leave.update', $row->id)}}" method="post">
+                                @csrf
+                                {{method_field('PUT')}}
+                                <input type="text" name="status" value="rejected" hidden>
+                                <button class="btn btn-danger btn-sm m-1">Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endif
+                    @endforeach
+
+                    @endif
+
                 </tbody>
             </table>
         </div>
@@ -145,19 +267,47 @@
 </div>
 @endif
 
-<script>
-    // let date_1 = new Date(document.getElementById('start').innerText);
-    // let date_2 = new Date(document.getElementById('end').innerText);
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+    $('.remove-data').click(function (event) {
+        var form = $(this).closest("form");
+        event.preventDefault();
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success m-1',
+                cancelButton: 'btn btn-danger m-1'
+            },
+            buttonsStyling: false
+        })
 
-    // const days = (date_1, date_2) => {
-    //     let difference = date_1.getTime() - date_2.getTime();
-    //     let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-    //     return TotalDays;
-    // }
-
-    // let result = +days(date_1, date_2).toString().split('-').join('') + 1;
-    // document.getElementById('result').innerText = '(' + result + ' days)'
-    // console.log(result);
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, remove all!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    '',
+                    'success'
+                )
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    '',
+                    'error'
+                )
+            }
+        })
+    });
 
 </script>
 

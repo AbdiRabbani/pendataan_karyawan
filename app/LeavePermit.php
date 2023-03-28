@@ -13,4 +13,9 @@ class LeavePermit extends Model
     {
         return $this->belongsTo('App\User', 'id_luser');
     }
+
+    public function manager()
+    {
+        return $this->belongsTo('App\User', 'id_manager');
+    }
 }
