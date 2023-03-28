@@ -91,7 +91,7 @@
                                     &nbsp; {{ $bio->user->email }}</li>
                                     <li class="list-group-item border-0 ps-0 text-sm"><strong
                                         class="text-dark">Remaining Leave:</strong>
-                                    &nbsp; {{ $bio->leaveperyear }} Day</li>
+                                    &nbsp; {{ $result }} Day</li>
                             </ul>
                         </div>
                     </div>

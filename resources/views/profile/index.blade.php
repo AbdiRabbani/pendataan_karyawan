@@ -93,7 +93,7 @@
                                     &nbsp; {{ Auth::user()->email }}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Remaining
                                         Leave:</strong>
-                                    &nbsp; {{ $row->leaveperyear }} Day</li>
+                                    &nbsp; {{ $result }} Day</li>
                             </ul>
                         </div>
                     </div>

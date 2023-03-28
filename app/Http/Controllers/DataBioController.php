@@ -9,6 +9,7 @@ use App\Title;
 use App\Dept;
 use App\User;
 use App\Family;
+use App\LeavePermit;
 
 class DataBioController extends Controller
 {
@@ -130,8 +131,14 @@ class DataBioController extends Controller
     public function show($id)
     {
         $bio = Biodata::find($id);
+
+        $total_leave = LeavePermit::where('id_luser', $bio->id_user)->sum('total_leave');
+        $annual_limit = $bio->sum('leaveperyear');
+
+        $result = $annual_limit - $total_leave;
+
         $family = Family::where('id_fuser', $bio->id_user)->get()->all();
-        return view('biodata.biodata-detail', compact('bio', 'family'));
+        return view('biodata.biodata-detail', compact('bio', 'family', 'result'));
     }
 
     /**
