@@ -12,9 +12,7 @@
         <div class="col-md-4 border rounded p-2 m-1">
             <p class="h6">Your leave this year</p>
             @if($leave)
-            @foreach($leave as $leaves)
-            <p><span class="h4">{{$leaves->total_leave}}</span> day</p>
-            @endforeach
+            <p><span class="h4">{{$total}}</span> day</p>
             @else
             <p><span class="h4">0</span> day</p>
             @endif
@@ -121,7 +119,7 @@
                 <tbody>
                     @if(Auth::user()->level == 'manager')
                     @foreach($manager as $row)
-                    @if($row->status == "pending")
+                    @if($row->status == "pending" && $row->id_luser != Auth::user()->id)
                     <tr>
                         <td>{{$row->user->name}}</td>
                         <td>{{$row->name}}</td>
@@ -168,7 +166,7 @@
 
                     @elseif(Auth::user()->level == 'supervisor')
                     @foreach($supervisor as $row)
-                    @if($row->status == "pending")
+                    @if($row->status == "pending" && $row->id_luser != Auth::user()->id && $row->id_luser != $row->id_manager)
                     <tr>
                         <td>{{$row->user->name}}</td>
                         <td>{{$row->name}}</td>

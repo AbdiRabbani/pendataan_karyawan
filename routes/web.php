@@ -42,6 +42,9 @@ Route::resource('/departement', 'DeptController');
 
 //Family
 Route::resource('/family', 'FamilyController');
+
+//Leave
+Route::delete('/leave/deleteAll', 'LeaveController@deleteAll');
 });
 
 Route::resource('/leave','LeaveController');

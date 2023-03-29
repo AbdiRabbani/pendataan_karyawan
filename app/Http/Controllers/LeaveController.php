@@ -21,16 +21,19 @@ class LeaveController extends Controller
     public function index()
     {
         $leave = LeavePermit::where('id_luser', Auth()->user()->id)->get()->all();
-        $manager = LeavePermit::where('id_manager', Auth()->user()->id)->get()->all();
+
+        $total = LeavePermit::where('id_luser', Auth()->user()->id)->sum('total_leave');
+        
+        $manager = LeavePermit::where('id_manager' , Auth()->user()->id)->get()->all();
         $supervisor = LeavePermit::where('id_supervisor', Auth()->user()->id)->get()->all();
         $admin = LeavePermit::all();
 
-        $total_leave = LeavePermit::sum('total_leave');
+        $total_leave = LeavePermit::where('id_luser', Auth()->user()->id)->sum('total_leave');
         $annual_limit = Biodata::where('id_user', Auth()->user()->id)->sum('leaveperyear');
 
         $result = $annual_limit - $total_leave;
 
-        return view('leave.index', compact('leave', 'manager', 'admin', 'supervisor', 'annual_limit', 'result'));
+        return view('leave.index', compact('leave', 'manager', 'admin', 'supervisor', 'annual_limit', 'result', 'total'));
     }
 
     /**
@@ -110,8 +113,7 @@ class LeaveController extends Controller
 
     public function deleteAll()
     {
-        $data = LeavePermit::query();
-        $data->delete();
+        LeavePermit::query()->delete();
 
         return redirect('/leave');
     }
