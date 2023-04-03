@@ -55,6 +55,7 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
+        $leave = LeavePermit::all();
         LeavePermit::create($request->all());
         return redirect('/leave');
     }

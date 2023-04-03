@@ -27,4 +27,9 @@
         </div>
     </form>
 </div>
+
+<script>
+    document.getElementById('dataStart').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0]
+    document.getElementById('dataEnd').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0]
+</script>
 @endsection
