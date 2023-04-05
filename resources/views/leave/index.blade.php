@@ -26,7 +26,11 @@
     <div class="col-md-12 pt-5">
         <div class="col-md-12 d-flex justify-content-between">
             <p class="h3">Your leave history</p>
+            @if($total >= $annual_limit)
+            <a href="#" class="btn btn-success btn-sm disabled-leave">Add Leave Request</a>
+            @else
             <a href="{{route('leave.create')}}" class="btn btn-success btn-sm">Add Leave Request</a>
+            @endif
         </div>
         @foreach($leave as $row)
         <div class="col-md-10 border d-flex row p-2 my-3 mx-1">
@@ -166,7 +170,8 @@
 
                     @elseif(Auth::user()->level == 'supervisor')
                     @foreach($supervisor as $row)
-                    @if($row->status == "pending" && $row->id_luser != Auth::user()->id && $row->id_luser != $row->id_manager)
+                    @if($row->status == "pending" && $row->id_luser != Auth::user()->id && $row->id_luser !=
+                    $row->id_manager)
                     <tr>
                         <td>{{$row->user->name}}</td>
                         <td>{{$row->name}}</td>
@@ -255,9 +260,7 @@
                     </tr>
                     @endif
                     @endforeach
-
                     @endif
-
                 </tbody>
             </table>
         </div>
@@ -305,6 +308,14 @@
                 )
             }
         })
+    });
+
+    $('.disabled-leave').click(function () {
+        Swal.fire(
+            'Wanna Leave?',
+            'You have use all your leave limmit',
+            'question'
+        )
     });
 
 </script>

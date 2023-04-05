@@ -58,6 +58,7 @@ class DataUserController extends Controller
             'level' => $request['level'],
             'password' => Hash::make($request['password']),
         ]);
+
         return redirect('/user');
     }
 

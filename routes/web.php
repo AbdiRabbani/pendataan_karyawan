@@ -11,9 +11,17 @@
 |
 */
 
+use App\Mail\SendMail;
+
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::get('/mail', function () {
+    return new SendMail();
+});
+
+Route::get('/kirim-email', 'EmailController@index');
 
 Auth::routes();
 
