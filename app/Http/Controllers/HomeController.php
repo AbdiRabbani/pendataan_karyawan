@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Session;
+use Config;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -21,8 +25,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('index');
+
+        return view('index', [
+            'users' => User::select("*")->whereNotNull('last_seen')->orderBy('id', 'desc')->paginate(10),
+        ]);
     }
 }
