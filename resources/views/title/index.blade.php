@@ -47,7 +47,7 @@
                 @csrf
                 <div class="mb-3 justify-content-start d-flex row">
                     <label for="title-input" class="form-label">Title Name</label>
-                    <input name="title_name" type="text" class="form-control border p-2" id="title-input">
+                    <input required name="title_name" type="text" class="form-control border p-2" id="title-input">
                 </div>
                 <div class="mb-3 justify-content-start d-flex row">
                     <button type="submit" class="btn btn-success">Submit</button>
