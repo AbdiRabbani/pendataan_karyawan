@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
-        return view('index', [
+        return view('home.index', [
             'users' => User::select("*")->whereNotNull('last_seen')->orderBy('id', 'desc')->paginate(10),
         ]);
     }

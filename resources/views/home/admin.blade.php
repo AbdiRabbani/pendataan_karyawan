@@ -3,8 +3,8 @@
         <div class="card">
             <div class="card-header pb-0">
                 <div class="row">
-                    <div class="col-lg-6 col-7">
-                        <h6>Admin Online</h6>
+                    <div class="col-md-12">
+                        <h6 class="p-2 rounded bg-light-green text-white">User Online</h6>
                     </div>
                 </div>
             </div>
@@ -35,13 +35,18 @@
                                 <td class="p-4">{{$user->name}}</td>
                                 <td class="p-4">{{$user->email}}</td>
                                 <td class="p-4">{{$user->level}}</td>
-                                <td class="p-4">{{$user->last_seen}}</td>
                                 @if (Cache::has('user-is-online-' . $user->id))
-                                <td class="text-success p-4">Online</td>
+                                <td class="text-success p-4">Now</td>
+                                @else
+                                <td class="p-4">{{ Carbon\Carbon::parse($user->last_seen)->format('H')}} Hour {{ Carbon\Carbon::parse($user->last_seen)->format('i')}} Minute Ago</td>
+                                </td>
+                                @endif
+                                @if (Cache::has('user-is-online-' . $user->id))
+                                <td class="text-success p-4"><span class="col-md-1 bg-success">.</span> Online</td>
                                 @else
                                 <td class="text-secondary p-4">Offline</td>
                                 @endif
-                            </tr>  
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -49,6 +54,4 @@
             </div>
         </div>
     </div>
-</div>
-
 </div>
