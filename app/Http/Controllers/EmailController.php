@@ -12,7 +12,7 @@ class EmailController extends Controller
     {
         $mail_data = [
             'recipient' => 'abdirabbani59@gmail.com',
-            'fromEmail' => 'fawazalfajr845@gmail.com',
+            'fromEmail' => env (),
             'fromName' => 'Fawaz',
             'subject' => 'Laravel',
         ];

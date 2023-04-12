@@ -17,7 +17,8 @@
                     <option value="admin">Admin</option>
                     <option value="manager">Manager</option>
                     <option value="supervisor">Supervisor</option>
-                    <option value="staff">Staff</option>
+                    <option value="staff">Leader/Staff</option>
+                    <option value="administration">Operator/Administrasi</option>
                 </select>
                 <label for="dataPassword">Password</label>
                 <input required name="password" type="password" id="dataPassword" class="border p-2 form-control mb-3">

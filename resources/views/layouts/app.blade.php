@@ -25,6 +25,9 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{asset('template/css/material-dashboard.css?v=3.0.4')}}" rel="stylesheet" />
 
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet" />
+
+
     <style>
         .bg-light-green {
             background: #22a78c;
@@ -193,6 +196,9 @@
 
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{asset('template/js/material-dashboard.min.js?v=3.0.4')}}"></script>
+
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
+
 </body>
 
 </html>

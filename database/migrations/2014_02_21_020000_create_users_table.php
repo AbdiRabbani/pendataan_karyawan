@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->enum('level', ['admin', 'staff', 'supervisor', 'manager'])->default('staff');
+            $table->enum('level', ['admin', 'manager', 'supervisor', 'staff', 'administration']);
             $table->enum('biodata', ['true', 'false'])->default('false');
             $table->string('password');
             $table->rememberToken();

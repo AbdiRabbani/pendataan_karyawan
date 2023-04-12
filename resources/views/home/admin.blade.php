@@ -34,7 +34,19 @@
                                 {{-- <th scope="row">{{ $loop->id  }}</th> --}}
                                 <td class="p-4">{{$user->name}}</td>
                                 <td class="p-4">{{$user->email}}</td>
-                                <td class="p-4">{{$user->level}}</td>
+                                <td class="p-4">
+                                    @if($user->level == 'staff')
+                                    Leader/Staff
+                                    @elseif($user->level == 'administration')
+                                    Operator/Administration
+                                    @elseif($user->level == 'admin')
+                                    Admin
+                                    @elseif($user->level == 'manager')
+                                    Manager
+                                    @else
+                                    Supervisor
+                                    @endif
+                                </td>
                                 @if (Cache::has('user-is-online-' . $user->id))
                                 <td class="text-success p-4">Now</td>
                                 @else

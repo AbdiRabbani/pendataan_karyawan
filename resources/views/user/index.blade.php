@@ -1,13 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    div.dataTables_wrapper div.dataTables_filter input {
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+    }
+
+    div.dataTables_wrapper div.dataTables_length select {
+        border: 1px solid lightgrey;
+        border-radius: 10px;
+        background-image: none;
+        text-align: center;
+    }
+
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination .paginate_button {
+        margin: 0px 0px 0px 20px;
+    }
+
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination .paginate_button a {
+        width: auto;
+        padding: 2px;
+        border: none;
+        background: none;
+        box-shadow: none;
+    }
+</style>
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-12">
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-light-green shadow-primary border-radius-lg pt-4 pb-3 row">
-                        <h6 class="text-white text-capitalize ps-3 col-md-10">Users</h6>
+                    <div class="bg-light-green shadow-primary border-radius-lg pt-4 pb-3 row d-flex justify-content-between">
+                        <h6 class="text-white text-capitalize ps-3 col-md-2 text-center align">Users</h6>
                         <h6 class="text-white text-capitalize ps-3 col-md-2 align-middle text-sm text-center">
                             <a class="text-white" href="{{route('user.create')}}">Tambah User <i
                                     class="bi bi-person-plus-fill"></i></a>
@@ -15,8 +40,8 @@
                     </div>
                 </div>
                 <div class="card-body px-0 pb-2">
-                    <div class="table-responsive p-0">
-                        <table class="table table-hover">
+                    <div class="table-responsive p-3">
+                        <table id="myTable" class="table table-hover">
                             <thead>
                                 <th>Nama</th>
                                 <th>Level</th>
@@ -28,13 +53,26 @@
                                 @foreach($user as $row)
                                 <tr>
                                     <td class="px-4">{{$row->name}}</td>
-                                    <td class="px-4">{{$row->level}}</td>
+                                    <td class="px-4">
+                                        @if($row->level == 'staff')
+                                        Leader/Staff
+                                        @elseif($row->level == 'administration')
+                                        Operator/Administration
+                                        @elseif($row->level == 'admin')
+                                        Admin
+                                        @elseif($row->level == 'manager')
+                                        Manager
+                                        @else
+                                        Supervisor
+                                        @endif
+                                    </td>
                                     <td class="px-4">{{$row->email}}</td>
                                     <td class="align-middle text-center">
                                         <form method="POST" action="{{ route('user.destroy', $row->id) }}">
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
-                                            <a href="{{route('user.edit', $row->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                                            <a href="{{route('user.edit', $row->id)}}"
+                                                class="btn btn-warning btn-sm">Edit</a>
                                             <button type="submit" class="btn btn-sm btn-danger btn-flat remove-data"
                                                 data-toggle="tooltip" title='Delete'>Delete</button>
                                         </form>
@@ -103,4 +141,10 @@
 
     </script>
 
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        })
+    </script>
     @endsection

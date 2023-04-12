@@ -90,7 +90,7 @@
 @endif
 
 <!-- Untuk approve cuti -->
-@if(Auth::user()->level != 'staff')
+@if(Auth::user()->level != 'staff' && Auth::user()->level != 'administration')
 <div class="container-fluid py-4">
     <div class="col-md-12 d-flex justify-content-between row">
         <div class="col-md-12 d-flex justify-content-between">
@@ -125,7 +125,7 @@
                     @foreach($manager as $row)
                     @if($row->status == "pending" && $row->id_luser != Auth::user()->id)
                     <tr>
-                        <td>{{$row->user->name}}</td>
+                        <td>{{$row->user->name}} ({{$row->user->level}})</td>
                         <td>{{$row->name}}</td>
                         <td>
                             <p>
@@ -173,7 +173,7 @@
                     @if($row->status == "pending" && $row->id_luser != Auth::user()->id && $row->id_luser !=
                     $row->id_manager)
                     <tr>
-                        <td>{{$row->user->name}}</td>
+                        <td>{{$row->user->name}} ({{$row->user->level}})</td>
                         <td>{{$row->name}}</td>
                         <td>
                             <p>
@@ -219,7 +219,7 @@
                     @foreach($admin as $row)
                     @if($row->status == "pending")
                     <tr>
-                        <td>{{$row->user->name}}</td>
+                        <td>{{$row->user->name}} ({{$row->user->level}})</td>
                         <td>{{$row->name}}</td>
                         <td>
                             <p>

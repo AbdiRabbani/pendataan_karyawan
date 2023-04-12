@@ -113,10 +113,11 @@ class DataUserController extends Controller
     public function destroy($id)
     {
         $data = User::find($id);
+
         $dataF = Family::where('id_fuser', $id)->get()->all();
         
         if($dataF) {
-            Family::whereIn('id_fuser', $id)->delete();
+            Family::where('id_fuser', $id)->delete();
         }
 
         $data->delete();
