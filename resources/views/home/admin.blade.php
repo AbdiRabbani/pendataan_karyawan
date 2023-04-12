@@ -42,9 +42,9 @@
                                 </td>
                                 @endif
                                 @if (Cache::has('user-is-online-' . $user->id))
-                                <td class="text-success p-4"><span class="col-md-1 bg-success">.</span> Online</td>
+                                <td class="text-success p-4"><span class="col-md-1 bg-success">•</span> Online</td>
                                 @else
-                                <td class="text-secondary p-4">Offline</td>
+                                <td class="text-secondary p-4"><span class="col-md-1 bg-secondary">•</span> Offline</td>
                                 @endif
                             </tr>
                             @endforeach
