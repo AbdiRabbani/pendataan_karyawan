@@ -9,11 +9,21 @@
         <div class="col-md-12 row d-flex">
             <div class="col-md-4" id="formContent">
                 <label for="dataName">Name</label>
-                <input required name="name" type="text" id="dataName" class="border p-2 form-control mb-3">
+                <input  name="name" type="text" id="dataName" class="border p-2 form-control mb-3 @error('name') is-invalid @enderror">
+                @error('name')
+                  <div class="invalid-feedback">
+                     {{$message}}
+                    </div>
+                 @enderror
                 <label for="dataEmail">EMail</label>
-                <input required name="email" type="email" id="dataEmail" class="border p-2 form-control mb-3">
+                <input  name="email" type="email" id="dataEmail" class="border p-2 form-control mb-3 @error('email') is-invalid @enderror">
+                @error('email')
+                  <div class="invalid-feedback">
+                     {{$message}}
+                    </div>
+                 @enderror
                 <label for="dataRole">Role</label>
-                <select required name="level" id="dataRole" class="border p-2 form-control mb-3">
+                <select  name="level" id="dataRole" class="border p-2 form-control mb-3 @error('level') is-invalid @enderror">
                     <option value="admin">Admin</option>
                     <option value="manager">Manager</option>
                     <option value="supervisor">Supervisor</option>
@@ -21,7 +31,12 @@
                     <option value="administration">Operator/Administrasi</option>
                 </select>
                 <label for="dataPassword">Password</label>
-                <input required name="password" type="password" id="dataPassword" class="border p-2 form-control mb-3">
+                <input  name="password" type="password" id="dataPassword" class="border p-2 form-control mb-3 @error('password') is-invalid @enderror">
+                @error('password')
+                  <div class="invalid-feedback">
+                     {{$message}}
+                    </div>
+                 @enderror
             </div>
         </div>
 
