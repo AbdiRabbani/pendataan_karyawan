@@ -73,6 +73,7 @@
                     @csrf
                     {{method_field('DELETE')}}
                     <button type="submit" class="btn btn-danger">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Cancel</button>
                 </form>
                 @endif
             </div>
@@ -167,7 +168,6 @@
 
                     @endif
                     @endforeach
-
                     @elseif(Auth::user()->level == 'supervisor')
                     @foreach($supervisor as $row)
                     @if($row->status == "pending" && $row->id_luser != Auth::user()->id && $row->id_luser !=

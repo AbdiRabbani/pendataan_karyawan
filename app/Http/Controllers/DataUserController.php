@@ -10,6 +10,7 @@ use App\Title;
 use App\Family;
 use App\Dept;
 use App\Biodata;
+use Illuminate\Auth\Events\Validated;
 use Validator;
 
 class DataUserController extends Controller
@@ -40,6 +41,7 @@ class DataUserController extends Controller
     public function create()
     {
         $user = User::all();
+
         return view('user.create-user', compact('user'));
     }
 
@@ -49,15 +51,33 @@ class DataUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
         $input = $request->all();
+
+
+
+        $this->validate(
+            $request,
+            [
+                'name' => 'required|max:255',
+                'email' => 'required|email|unique:users,email' . $user->id,
+                'level' => 'required',
+                'password' => 'required',
+            ],
+            [
+                'email.unique' => 'Email sudah tersedia',
+            ]
+        );
+
         User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'level' => $request['level'],
             'password' => Hash::make($request['password']),
         ]);
+
+
 
         return redirect('/user');
     }
@@ -114,8 +134,8 @@ class DataUserController extends Controller
     {
         $data = User::find($id);
         $dataF = Family::where('id_fuser', $id)->get()->all();
-        
-        if($dataF) {
+
+        if ($dataF) {
             Family::whereIn('id_fuser', $id)->delete();
         }
 
