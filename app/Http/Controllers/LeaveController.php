@@ -43,8 +43,12 @@ class LeaveController extends Controller
      */
     public function create()
     {
+        $total_leave = LeavePermit::where('id_luser', Auth()->user()->id)->sum('total_leave');
+        $annual_limit = Biodata::where('id_user', Auth()->user()->id)->sum('leaveperyear');
+        $result = $annual_limit - $total_leave;
+
         $user = Biodata::where('id_user', Auth()->user()->id)->get()->all();
-        return view('leave.create-leave', compact('user'));
+        return view('leave.create-leave', compact('user', 'result'));
     }
 
     /**
@@ -56,6 +60,7 @@ class LeaveController extends Controller
     public function store(Request $request)
     {
         $leave = LeavePermit::all();
+       
         LeavePermit::create($request->all());
         return redirect('/leave');
     }
@@ -117,5 +122,11 @@ class LeaveController extends Controller
         LeavePermit::query()->delete();
 
         return redirect('/leave');
+    }
+
+    public function history() {
+        $leave = LeavePermit::all();
+
+        return view('leave.history-leave', compact('leave'));
     }
 }

@@ -53,6 +53,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     //Leave
     Route::delete('/leave/deleteAll', 'LeaveController@deleteAll');
+    Route::get('/leave/history', 'LeaveController@history');
 });
 
 Route::resource('/leave', 'LeaveController');

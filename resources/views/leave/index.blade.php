@@ -38,7 +38,7 @@
                 <p class="fs-5">{{$row->name}}</p>
                 <div class="">
                     @if($row->status == "approve")
-                    <p class="bg-success rounded h6 px-1 text-white">{{$row->status}}</p>
+                    <p class="bg-success rounded h6 px-1 text-white">{{$row->status}}d</p>
                     @elseif($row->status == "pending")
                     <p class="bg-warning rounded h6 px-1 text-white">{{$row->status}}</p>
                     @else
@@ -73,7 +73,6 @@
                     @csrf
                     {{method_field('DELETE')}}
                     <button type="submit" class="btn btn-danger">Cancel</button>
-                    <button type="submit" class="btn btn-danger">Cancel</button>
                 </form>
                 @endif
             </div>
@@ -103,11 +102,9 @@
             <p class="h3 d-flex">
                 All staff leave request
             </p>
-            <form action="{{url('/leave/deleteAll')}}" method="post">
                 @csrf
-                <input name="_method" type="hidden" value="DELETE">
-                <button class="btn btn-danger btn-sm remove-data">reset all</button>
-            </form>
+                <!-- <button class="btn btn-danger btn-sm remove-data">reset all</button> -->
+                <a href="/leave/history" class="btn btn-warning btn-sm">Leave History</a>
             @endif
         </div>
 
@@ -147,6 +144,7 @@
                                 {{method_field('PUT')}}
                                 <input type="text" name="status" value="approve" hidden>
 
+                                @if($row->name != 'Izin' && $row->name != 'Sakit')
                                 <input type="text" name="total_leave" value="
                                     @php
                                     $date1=date_create($row->start_leave);
@@ -155,6 +153,7 @@
                                     echo intval($diff + 1);
                                     @endphp
                                 " hidden>
+                                @endif
                                 <button class="btn btn-success btn-sm m-1">Approve</button>
                             </form>
                             <form action="{{route('leave.update', $row->id)}}" method="post">
@@ -194,6 +193,7 @@
                                 {{method_field('PUT')}}
                                 <input type="text" name="status" value="approve" hidden>
 
+                                @if($row->name != 'Izin' && $row->name != 'Sakit')
                                 <input type="text" name="total_leave" value="
                                     @php
                                     $date1=date_create($row->start_leave);
@@ -202,6 +202,7 @@
                                     echo intval($diff + 1);
                                     @endphp
                                 " hidden>
+                                @endif
                                 <button class="btn btn-success btn-sm m-1">Approve</button>
                             </form>
                             <form action="{{route('leave.update', $row->id)}}" method="post">
@@ -240,6 +241,7 @@
                                 {{method_field('PUT')}}
                                 <input type="text" name="status" value="approve" hidden>
 
+                                @if($row->name != 'Izin' && $row->name != 'Sakit')
                                 <input type="text" name="total_leave" value="
                                     @php
                                     $date1=date_create($row->start_leave);
@@ -248,6 +250,7 @@
                                     echo intval($diff + 1);
                                     @endphp
                                 " hidden>
+                                @endif
                                 <button class="btn btn-success btn-sm m-1">Approve</button>
                             </form>
                             <form action="{{route('leave.update', $row->id)}}" method="post">
