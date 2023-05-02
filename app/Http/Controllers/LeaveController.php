@@ -74,10 +74,10 @@ class LeaveController extends Controller
         LeavePermit::create($request->all());
 
         $data = [
-            'email' => User::where('id' , $request->id_luser)->get('email'),
             'user' => User::where('id' , $request->id_luser)->get('name'),
             'manager' => User::where('id' , $request->id_manager)->get('name'),
             'supervisor' => User::where('id' , $request->id_supervisor)->get('name'),
+            'desc' => $request->name,
         ];
 
         Mail::to(User::where('id' , $request->id_manager)->get('email'))->send(new SendMailManager($data));

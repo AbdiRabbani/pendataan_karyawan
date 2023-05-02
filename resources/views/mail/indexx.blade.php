@@ -110,6 +110,7 @@
         <p class="container-p">Leave permittion from {{$data['user']}}</p>
 
         <p class="container-p">Leave Description</p>
+        <p class="container-p">{{$data['desc']}}</p>
 
     </div>
 
