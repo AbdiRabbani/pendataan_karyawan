@@ -35,6 +35,15 @@
                     <div
                         class="bg-light-green shadow-primary border-radius-lg pt-4 pb-3 row d-flex justify-content-between">
                         <h6 class="text-white text-capitalize ps-3 col-md-2 text-center align">Leave History</h6>
+
+
+                        <h6 class="text-white text-capitalize ps-3 col-md-2 align-middle text-sm text-center">
+                            <form action="{{url('/leave/deleteAll')}}" method="post">
+                                @csrf
+                                {{method_field('DELETE')}}
+                                <button class="btn btn-danger remove btn-sm">Reset</button>
+                            </form>
+                        </h6>
                     </div>
                 </div>
                 <div class="card-body px-0 pb-2">

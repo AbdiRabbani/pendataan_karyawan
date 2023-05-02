@@ -5,6 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Biodata;
 use App\LeavePermit;
+use App\User;
+
+use App\Mail\SendMailManager;
+use App\Mail\SendMailSuper;
+use Illuminate\Support\Facades\Mail;
+
+use Session;
+
 
 class LeaveController extends Controller
 {
@@ -60,8 +68,22 @@ class LeaveController extends Controller
     public function store(Request $request)
     {
         $leave = LeavePermit::all();
-       
+
+        // dd(User::where('id' , $request->id_supervisor)->get('email'));
+
         LeavePermit::create($request->all());
+
+        $data = [
+            'email' => User::where('id' , $request->id_luser)->get('email'),
+            'user' => User::where('id' , $request->id_luser)->get('name'),
+            'manager' => User::where('id' , $request->id_manager)->get('name'),
+            'supervisor' => User::where('id' , $request->id_supervisor)->get('name'),
+        ];
+
+        Mail::to(User::where('id' , $request->id_manager)->get('email'))->send(new SendMailManager($data));
+        Mail::to(User::where('id' , $request->id_supervisor)->get('email'))->send(new SendMailSuper($data));
+
+        Session::flash('message', 'Thank you for yout email');
         return redirect('/leave');
     }
 

@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container-fluid py-4">
-    <div class="row justify-content-evenly align-items-center">
-        <div class="col-6">
+    <div class="row justify-content-evenly align-items-center wrap">
+        <div class="col-md-6">
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-light-green shadow-primary border-radius-lg pt-4 pb-3 row">
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-md-4 p-4">
             <div class="card-header justify-content-end d-flex">
                 <h6 class="bg-light-green text-white p-2 rounded">Add Title 
                 <i class="bi bi-building-fill-add"></i>
