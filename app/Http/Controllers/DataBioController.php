@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Biodata;
-use App\Title;
 use App\Dept;
 use App\User;
 use App\Family;
@@ -14,7 +13,7 @@ use App\LeavePermit;
 class DataBioController extends Controller
 {
     public function __construct()
-    {
+    {   
         $this->middleware('auth');
     }
 
@@ -39,9 +38,8 @@ class DataBioController extends Controller
         $user = User::find($id);
         $usr = User::all();
         $bio = Biodata::all();
-        $title = Title::all();
         $dept = Dept::all();
-        return view('biodata.biodata-create', compact('user', 'bio', 'title', 'dept', 'usr'));
+        return view('biodata.biodata-create', compact('user', 'bio', 'dept', 'usr'));
     }
 
     /**
@@ -77,7 +75,6 @@ class DataBioController extends Controller
 
         $dataBio = [
             'id_user' => $data['id_user'],
-            'id_title' => $data['id_title'],
             'id_dept' => $data['id_dept'],
             'leaveperyear' => $data['leaveperyear'],
             'nip' => $data['nip'],
@@ -151,9 +148,8 @@ class DataBioController extends Controller
     {
         $bio = Biodata::find($id);
         $family = Family::where('id_fuser', $bio->id_user)->get()->all();
-        $title = Title::all();
         $dept = Dept::all();
-        return view('biodata.biodata-edit', compact('bio', 'title', 'dept', 'family'));
+        return view('biodata.biodata-edit', compact('bio', 'dept', 'family'));
     }
 
     /**
@@ -193,8 +189,7 @@ class DataBioController extends Controller
         if($request->hasFile('photo')){
             $dataBio = [
                 'id_user' => $data['id_user'],
-                'id_title' => $data['id_title'],
-                'id_dept' => $data['id_dept'],
+                    'id_dept' => $data['id_dept'],
                 'leaveperyear' => $data['leaveperyear'],
                 'nip' => $data['nip'],
                 'photo' => $data['photo'],
@@ -215,7 +210,6 @@ class DataBioController extends Controller
         } else {
             $dataBio = [
                 'id_user' => $data['id_user'],
-                'id_title' => $data['id_title'],
                 'id_dept' => $data['id_dept'],
                 'leaveperyear' => $data['leaveperyear'],
                 'nip' => $data['nip'],

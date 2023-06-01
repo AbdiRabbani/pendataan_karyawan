@@ -111,6 +111,16 @@
 
         <p class="container-p">Leave Description</p>
         <p class="container-p">{{$data['desc']}}</p>
+        <p class="container-p">{{$data['start']}} - {{$data['end']}} 
+            <span>
+                @php
+                $date1=date_create($data['start']);
+                $date2=date_create($data['end']);
+                $diff=date_diff($date1,$date2)->format('%d');
+                echo '(' . ($diff + 1) . ' Days)';
+                @endphp
+            </span>
+        </p>
 
     </div>
 

@@ -9,6 +9,7 @@ use App\User;
 
 use App\Mail\SendMailManager;
 use App\Mail\SendMailSuper;
+use App\Mail\SendMail;
 use Illuminate\Support\Facades\Mail;
 
 use Session;
@@ -73,15 +74,23 @@ class LeaveController extends Controller
 
         LeavePermit::create($request->all());
 
+        $total_leave = LeavePermit::where('id_luser', Auth()->user()->id)->sum('total_leave');
+        $annual_limit = Biodata::where('id_user', Auth()->user()->id)->sum('leaveperyear');
+        $result = $annual_limit - $total_leave;
+
         $data = [
             'user' => User::where('id' , $request->id_luser)->get('name'),
             'manager' => User::where('id' , $request->id_manager)->get('name'),
             'supervisor' => User::where('id' , $request->id_supervisor)->get('name'),
+            'admin' => User::where('level' , 'admin')->get('name'),
             'desc' => $request->name,
+            'start' => $request->start_leave,
+            'end' => $request->end_leave,
         ];
 
         Mail::to(User::where('id' , $request->id_manager)->get('email'))->send(new SendMailManager($data));
         Mail::to(User::where('id' , $request->id_supervisor)->get('email'))->send(new SendMailSuper($data));
+        Mail::to(User::where('level' , 'admin')->get('email'))->send(new SendMail($data));
 
         Session::flash('message', 'Thank you for yout email');
         return redirect('/leave');

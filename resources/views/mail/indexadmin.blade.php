@@ -105,7 +105,7 @@
 
     <div class="container">
 
-        <p class="mb">To {{$data['manager']}}</p>
+        <p class="mb">To {{$data['admin']}}</p>
 
         <p class="container-p">Leave permittion from {{$data['user']}}</p>
 

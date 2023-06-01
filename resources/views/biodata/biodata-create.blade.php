@@ -23,7 +23,7 @@
                 <label for="dataPhoneP">Mobile Phone</label>
                 <input required name="mobile_phone" type="number" id="dataPhone" class="border p-2 form-control mb-3">
 
-                <label for="dataPhoto">Reupload Your Photo</label>
+                <label for="dataPhoto">upload Your Photo</label>
                 <input required name="photo" type="file" id="dataPhoto" class="border p-2 form-control mb-3">
                 <label for="dataNip">NIP</label>
                 <input required name="nip" type="number" id="dataNip" class="border p-2 form-control mb-3">
@@ -32,11 +32,9 @@
             </div>
             <div class="col-md-4">
                 <label for="dataTitle">Title</label>
-                <select required name="id_title" class="form-select p-2 border mb-3" id="dataTitle">
-                    @foreach($title as $trow)
-                    <option value="{{$trow->id}}">{{$trow->title_name}}</option>
-                    @endforeach
-                </select>
+                <select required class="form-select p-2 border mb-3" id="dataTitle" disabled>
+                    <option value="">{{$user->level}}</option>
+               </select>
                 <label for="dataDept">Deparatement</label>
                 <select required name="id_dept" class="form-select p-2 border mb-3" id="dataDept">
                     @foreach($dept as $drow)

@@ -29,18 +29,16 @@
                     id="dataPhoto">
                 <input name="photo" type="file" id="dataPhoto" class="border p-2 form-control mb-3">
                 <label for="dataNip">NIP</label>
-                <input required name="nip" type="number" id="dataNip" class="border p-2 form-control mb-3" value="{{$bio->nip}}">
+                <input required name="nip" type="number" id="dataNip" class="border p-2 form-control mb-3"
+                    value="{{$bio->nip}}">
                 <label for="dataDate">JoinDate *M/D/Y</label>
                 <input required name="join_date" type="date" id="dataDate" class="border p-2 form-control mb-3"
                     value="{{$bio->join_date}}">
             </div>
             <div class="col-md-4">
                 <label for="dataTitle">Title</label>
-                <select required  name="id_title" class="form-select p-2 border mb-3" id="dataTitle">
-                    <option value="{{$bio->title->id}}" selected>{{$bio->title->title_name}}--current</option>
-                    @foreach($title as $trow)
-                    <option value="{{$trow->id}}">{{$trow->title_name}}</option>
-                    @endforeach
+                <select required class="form-select p-2 border mb-3" id="dataTitle" disabled>
+                    <option value="">{{$bio->user->level}}</option>
                 </select>
                 <label for="dataDept">Deparatement</label>
                 <select required name="id_dept" class="form-select p-2 border mb-3" id="dataDept">
@@ -73,7 +71,8 @@
         <div class="col-md-12 row d-flex">
             <div class="col-md-4" id="formContent">
                 <label for="dataLeave">Maximum Leave Per Year</label>
-                <input type="number" class="form-control mb-3 border p-2" name="leaveperyear" value="{{$bio->leaveperyear}}">
+                <input type="number" class="form-control mb-3 border p-2" name="leaveperyear"
+                    value="{{$bio->leaveperyear}}">
             </div>
         </div>
 
@@ -95,8 +94,8 @@
                 <input required name="bpjs_ketenagakerjaan_member_no" type="number" id="dataBPJSK"
                     class="border p-2 form-control mb-3" value="{{$bio->bpjs_ketenagakerjaan_member_no}}">
                 <label for="dataBPJS">BPJS Kesehatan Member No</label>
-                <input required name="bpjs_kesehatan_member_no" type="number" id="dataBPJS" class="border p-2 form-control mb-3"
-                    value="{{$bio->bpjs_kesehatan_member_no}}">
+                <input required name="bpjs_kesehatan_member_no" type="number" id="dataBPJS"
+                    class="border p-2 form-control mb-3" value="{{$bio->bpjs_kesehatan_member_no}}">
             </div>
             <div class="col-md-4">
                 <label for="dataTax">Tax Status</label>
@@ -106,8 +105,8 @@
                 <input required name="npwp" type="number" id="dataNPWP" class="border p-2 form-control mb-3"
                     value="{{$bio->npwp}}">
                 <label for="dataHIN">Health Insurance Member No</label>
-                <input required name="health_insurance_number" type="string" id="dataHIN" class="border p-2 form-control mb-3"
-                    value="{{$bio->health_insurance_number}}">
+                <input required name="health_insurance_number" type="string" id="dataHIN"
+                    class="border p-2 form-control mb-3" value="{{$bio->health_insurance_number}}">
             </div>
         </div>
 
@@ -123,8 +122,10 @@
             @foreach($family as $row)
             <div class="col-md-6 mt-5 op" id="formContent">
                 <label for="dataName">Name</label>
-                <input required name="fname[]" type="text" id="dataFamilyName" class="border p-2 form-control mb-3" value="{{$row->fname}}">
-                <input required name="id_fuser[]" type="integer" class="border p-2 form-control mb-3" hidden value="{{$bio->id_user}}">
+                <input required name="fname[]" type="text" id="dataFamilyName" class="border p-2 form-control mb-3"
+                    value="{{$row->fname}}">
+                <input required name="id_fuser[]" type="integer" class="border p-2 form-control mb-3" hidden
+                    value="{{$bio->id_user}}">
                 <label for="dataAccount">Gender</label>
                 <select required name="gender[]" class="form-select p-2 border mb-3" id="dataGender">
                     <option value="{{$row->gender}}">{{$row->gender}}--current</option>
@@ -132,11 +133,14 @@
                     <option value="Female">Female</option>
                 </select>
                 <label for="dataAccount">Relation</label>
-                <input required name="relation[]" type="text" id="dataRelation" class="border p-2 form-control mb-3" value="{{$row->relation}}">
+                <input required name="relation[]" type="text" id="dataRelation" class="border p-2 form-control mb-3"
+                    value="{{$row->relation}}">
                 <label for="dataDob">DOB *M/D/Y</label>
-                <input required name="dob[]" type="date" id="dataDob" class="border p-2 form-control mb-3" value="{{$row->dob}}">
+                <input required name="dob[]" type="date" id="dataDob" class="border p-2 form-control mb-3"
+                    value="{{$row->dob}}">
                 <label for="dataBPJS">BPJS Kesehatan Member No</label>
-                <input required name="f_bpjs_kesehatan_member_no[]" type="number" id="dataBPJS" class="border p-2 form-control mb-3" value="{{$row->f_bpjs_kesehatan_member_no}}">
+                <input required name="f_bpjs_kesehatan_member_no[]" type="number" id="dataBPJS"
+                    class="border p-2 form-control mb-3" value="{{$row->f_bpjs_kesehatan_member_no}}">
                 <button type="button" class="btn btn-danger remove-table-row">Remove</button>
             </div>
             @endforeach
@@ -152,8 +156,8 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
-        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -187,5 +191,6 @@
     $(document).on('click', '.remove-table-row', function () {
         $(this).parents('.op').remove();
     });
+
 </script>
 @endsection
