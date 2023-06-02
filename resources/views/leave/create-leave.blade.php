@@ -46,7 +46,10 @@
 
     function dataSetEnd() {
         const startdate =  document.getElementById('dataStart').value;
+
         document.getElementById('dataEnd').min = new Date(startdate).toISOString().split("T")[0];
+
+        document.getElementById('dataEnd').value = new Date(startdate).toISOString().split("T")[0];
     }
 
     function dateset() {
@@ -70,7 +73,7 @@
         document.getElementById("send-leave").classList.add('btn-leave');
         Swal.fire(
             'Wanna Leave?',
-            'You have use all your leave limmit',
+            'your leave limit in one request is 12 day',
             'warning'
         )
     }
@@ -79,6 +82,12 @@
 </script>
 
 <script>
+
+    document.getElementById('dataStart').value = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
+        .toISOString().split("T")[0];
+    document.getElementById('dataEnd').value = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
+        .toISOString().split("T")[0];
+
     document.getElementById('dataStart').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
         .toISOString().split("T")[0];
     document.getElementById('dataEnd').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
