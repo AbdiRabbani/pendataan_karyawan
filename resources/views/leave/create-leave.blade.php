@@ -16,7 +16,7 @@
                 placeholder="Write your reason here">
 
             <label for="dataStart">leave start date *M/D/Y</label>
-            <input required type="date" onchange="dataSetEnd()" name="start_leave" id="dataStart" class="form-control border p-2">
+            <input required type="date" onchange="dataSetStart()" name="start_leave" id="dataStart" class="form-control border p-2">
 
             <label for="dataEnd">leave end date *M/D/Y</label>
             <input required type="date" onchange="dateset()" name="end_leave" id="dataEnd" class="form-control border p-2">
@@ -44,7 +44,7 @@
 
 <script>
 
-    function dataSetEnd() {
+    function dataSetStart() {
         const startdate =  document.getElementById('dataStart').value;
 
         document.getElementById('dataEnd').min = new Date(startdate).toISOString().split("T")[0];
