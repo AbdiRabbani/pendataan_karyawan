@@ -32,28 +32,28 @@ Route::get('/home', 'HomeController@index');
 Route::get('/profile', 'ProfileController@index');
 
 //Admin Middleware
-Route::middleware(['auth', 'admin'])->group(function() {
+Route::middleware(['auth', 'admin'])->group(function () {
 
-// User
-Route::resource('/user', 'DataUserController');
+    // User
+    Route::resource('/user', 'DataUserController');
 
-//Biodata
-Route::resource('/biodata','DataBioController');
-Route::post('biodata-save/{id}', 'DataBioController@store');
-Route::get('/user/biodata/{id}', 'DataBioController@create');
+    //Biodata
+    Route::resource('/biodata', 'DataBioController');
+    Route::post('biodata-save/{id}', 'DataBioController@store');
+    Route::get('/user/biodata/{id}', 'DataBioController@create');
 
-// Title
-Route::resource('/title', 'TitleController');
+    // Title
+    Route::resource('/title', 'TitleController');
 
-//Departement
-Route::resource('/departement', 'DeptController');
+    //Departement
+    Route::resource('/departement', 'DeptController');
 
-//Family
-Route::resource('/family', 'FamilyController');
+    //Family
+    Route::resource('/family', 'FamilyController');
 
-//Leave
-Route::delete('/leave/deleteAll', 'LeaveController@deleteAll');
+    //Leave
+    Route::delete('/leave/deleteAll', 'LeaveController@deleteAll');
+    Route::get('/leave/history', 'LeaveController@history');
 });
 
-Route::resource('/leave','LeaveController');
-
+Route::resource('/leave', 'LeaveController');

@@ -34,17 +34,29 @@
                                 {{-- <th scope="row">{{ $loop->id  }}</th> --}}
                                 <td class="p-4">{{$user->name}}</td>
                                 <td class="p-4">{{$user->email}}</td>
-                                <td class="p-4">{{$user->level}}</td>
+                                <td class="p-4">
+                                    @if($user->level == 'staff')
+                                    Leader/Staff
+                                    @elseif($user->level == 'administration')
+                                    Operator/Administration
+                                    @elseif($user->level == 'admin')
+                                    Admin
+                                    @elseif($user->level == 'manager')
+                                    Manager
+                                    @else
+                                    Supervisor
+                                    @endif
+                                </td>
                                 @if (Cache::has('user-is-online-' . $user->id))
                                 <td class="text-success p-4">Now</td>
                                 @else
-                                <td class="p-4">{{ Carbon\Carbon::parse($user->last_seen)->format('H')}} Hour {{ Carbon\Carbon::parse($user->last_seen)->format('i')}} Minute Ago</td>
-                                </td>
+                                <!-- <td class="p-4">{{ Carbon\Carbon::parse($user->last_seen)->format('H')}} Hour {{ Carbon\Carbon::parse($user->last_seen)->format('i')}} Minute Ago</td> -->
+                                <td class="p-4">{{Carbon\Carbon::parse($user->last_seen)->diffForHumans()}}</td>
                                 @endif
                                 @if (Cache::has('user-is-online-' . $user->id))
-                                <td class="text-success p-4"><span class="col-md-1 bg-success">.</span> Online</td>
+                                <td class="text-success p-4"><span class="col-md-1 bg-success">•</span> Online</td>
                                 @else
-                                <td class="text-secondary p-4">Offline</td>
+                                <td class="text-secondary p-4"><span class="col-md-1 bg-secondary">•</span> Offline</td>
                                 @endif
                             </tr>
                             @endforeach
@@ -54,4 +66,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>    

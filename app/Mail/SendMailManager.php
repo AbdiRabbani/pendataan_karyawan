@@ -7,10 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendMail extends Mailable
+class SendMailManager extends Mailable
 {
     use Queueable, SerializesModels;
-
     public $data;
 
     /**
@@ -30,6 +29,6 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.indexadmin');
+        return $this->markdown('mail.index');
     }
 }

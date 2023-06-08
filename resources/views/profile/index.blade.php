@@ -6,7 +6,7 @@
     <div class="page-header max-height-300 border-radius-xl mt-4 d-flex justify-content-center align-items-center"
         height="300px">
         <img src="{{asset('template/img/company-pict.png')}}" alt="toyotomo company image" height="800px">
-        <span class="mask  bg-light-green  opacity-6"></span>
+        <span class="mask bg-light-green opacity-6"></span>
     </div>
     @foreach($bio as $row)
     <div class="card card-body mx-3 mx-md-4 mt-n6">
@@ -23,7 +23,7 @@
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </h5>
                     <p class="mb-0 font-weight-normal text-sm">
-                        {{$row->title->title_name}}
+                        {{Auth::user()->level}}
                     </p>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Join
                                         Date:</strong> &nbsp; {{$row->join_date}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Title:</strong> &nbsp; {{$row->title->title_name}}</li>
+                                        class="text-dark">Title:</strong> &nbsp; {{Auth::user()->level}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
                                         class="text-dark">Departement:</strong> &nbsp; {{$row->dept->dept_name}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
@@ -364,7 +364,7 @@
         </h2>
     </div>
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-12">
             <div class="row">
                 <div class="col-xl-6 mb-xl-0 mb-4">
                     <div class="card bg-transparent shadow-xl">
@@ -450,7 +450,8 @@
                                                     class="text-dark">Account Number:</strong>
                                                 &nbsp; -</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                                    class="text-dark">Tax Status:</strong> &nbsp; -</li>
+                                                    class="text-dark">Tax Status:</strong> &nbsp; -
+                                            </li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">BPJS Ketenagakerjaan Membership No:</strong>
                                                 &nbsp; -</li>
@@ -460,7 +461,8 @@
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
                                                     class="text-dark">NPWP:</strong> &nbsp; -</li>
                                             <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                                    class="text-dark">Health Insurance Member No:</strong> &nbsp; -
+                                                    class="text-dark">Health Insurance Member No:</strong> &nbsp;
+                                                -
                                             </li>
                                         </ul>
                                     </div>
@@ -468,84 +470,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card h-100">
-                <div class="card-header pb-0 p-3">
-                    <div class="row">
-                        <div class="col-6 d-flex align-items-center">
-                            <h6 class="mb-0">Invoices</h6>
-                        </div>
-                        <div class="col-6 text-end">
-                            <button class="btn btn-outline-primary btn-sm mb-0">View All</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body p-3 pb-0">
-                    <ul class="list-group">
-                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                            <div class="d-flex flex-column">
-                                <h6 class="mb-1 text-dark font-weight-bold text-sm">March, 01, 2020</h6>
-                                <span class="text-xs">#MS-415646</span>
-                            </div>
-                            <div class="d-flex align-items-center text-sm">
-                                $180
-                                <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
-                                        class="material-icons text-lg position-relative me-1">picture_as_pdf</i>
-                                    PDF</button>
-                            </div>
-                        </li>
-                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                            <div class="d-flex flex-column">
-                                <h6 class="text-dark mb-1 font-weight-bold text-sm">February, 10, 2021</h6>
-                                <span class="text-xs">#RV-126749</span>
-                            </div>
-                            <div class="d-flex align-items-center text-sm">
-                                $250
-                                <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
-                                        class="material-icons text-lg position-relative me-1">picture_as_pdf</i>
-                                    PDF</button>
-                            </div>
-                        </li>
-                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                            <div class="d-flex flex-column">
-                                <h6 class="text-dark mb-1 font-weight-bold text-sm">April, 05, 2020</h6>
-                                <span class="text-xs">#FB-212562</span>
-                            </div>
-                            <div class="d-flex align-items-center text-sm">
-                                $560
-                                <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
-                                        class="material-icons text-lg position-relative me-1">picture_as_pdf</i>
-                                    PDF</button>
-                            </div>
-                        </li>
-                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                            <div class="d-flex flex-column">
-                                <h6 class="text-dark mb-1 font-weight-bold text-sm">June, 25, 2019</h6>
-                                <span class="text-xs">#QW-103578</span>
-                            </div>
-                            <div class="d-flex align-items-center text-sm">
-                                $120
-                                <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
-                                        class="material-icons text-lg position-relative me-1">picture_as_pdf</i>
-                                    PDF</button>
-                            </div>
-                        </li>
-                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                            <div class="d-flex flex-column">
-                                <h6 class="text-dark mb-1 font-weight-bold text-sm">March, 01, 2019</h6>
-                                <span class="text-xs">#AR-803481</span>
-                            </div>
-                            <div class="d-flex align-items-center text-sm">
-                                $300
-                                <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
-                                        class="material-icons text-lg position-relative me-1">picture_as_pdf</i>
-                                    PDF</button>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>

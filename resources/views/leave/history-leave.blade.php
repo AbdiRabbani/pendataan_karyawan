@@ -25,17 +25,24 @@
         background: none;
         box-shadow: none;
     }
+
 </style>
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-12">
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-light-green shadow-primary border-radius-lg pt-4 pb-3 row d-flex justify-content-between">
-                        <h6 class="text-white text-capitalize ps-3 col-md-2 text-center align">Users</h6>
+                    <div
+                        class="bg-light-green shadow-primary border-radius-lg pt-4 pb-3 row d-flex justify-content-between">
+                        <h6 class="text-white text-capitalize ps-3 col-md-2 text-center align">Leave History</h6>
+
+
                         <h6 class="text-white text-capitalize ps-3 col-md-2 align-middle text-sm text-center">
-                            <a class="text-white" href="{{route('user.create')}}">Tambah User <i
-                                    class="bi bi-person-plus-fill"></i></a>
+                            <form action="{{url('/leave/deleteAll')}}" method="post">
+                                @csrf
+                                {{method_field('DELETE')}}
+                                <button class="btn btn-danger remove btn-sm">Reset</button>
+                            </form>
                         </h6>
                     </div>
                 </div>
@@ -43,46 +50,44 @@
                     <div class="table-responsive p-3">
                         <table id="myTable" class="table table-hover">
                             <thead>
-                                <th>Nama</th>
-                                <th>Level</th>
-                                <th>E-Mail</th>
-                                <th class="text-center">Action</th>
-                                <th class="text-center">Biodata</th>
+                                <th>From</th>
+                                <th>Leave Reason</th>
+                                <th>Days</th>
+                                <th>Status</th>
                             </thead>
                             <tbody>
-                                @foreach($user as $row)
+                                @foreach($leave as $row)
                                 <tr>
-                                    <td class="px-4">{{$row->name}}</td>
                                     <td class="px-4">
-                                        @if($row->level == 'staff')
-                                        Leader/Staff
-                                        @elseif($row->level == 'administration')
-                                        Operator/Administration
-                                        @elseif($row->level == 'admin')
-                                        Admin
-                                        @elseif($row->level == 'manager')
-                                        Manager
+                                        {{$row->user->name}}
+                                    </td>
+                                    <td class="px-4">
+                                        {{$row->name}}
+                                    </td>
+                                    <td class="px-4">
+                                        {{$row->start_leave}} - {{$row->end_leave}}
+                                        <span>
+                                            @php
+                                            $date1=date_create($row->start_leave);
+                                            $date2=date_create($row->end_leave);
+                                            $diff=date_diff($date1,$date2)->format('%d');
+                                            echo '(' . ($diff + 1) . ' Days)';
+                                            @endphp
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        @if($row->status == "approve")
+                                        <div class="col-md-8">
+                                            <p class="bg-success rounded h6 px-1 text-white">{{$row->status}}d</p>
+                                        </div>
+                                        @elseif($row->status == "pending")
+                                        <div class="col-md-8">
+                                            <p class="bg-warning rounded h6 px-1 text-white">{{$row->status}}</p>
+                                        </div>
                                         @else
-                                        Supervisor
-                                        @endif
-                                    </td>
-                                    <td class="px-4">{{$row->email}}</td>
-                                    <td class="align-middle text-center">
-                                        <form method="POST" action="{{ route('user.destroy', $row->id) }}">
-                                            @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <a href="{{route('user.edit', $row->id)}}"
-                                                class="btn btn-warning btn-sm">Edit</a>
-                                            <button type="submit" class="btn btn-sm btn-danger btn-flat remove-data"
-                                                data-toggle="tooltip" title='Delete'>Delete</button>
-                                        </form>
-
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        @if($row->biodata == 'false')
-                                        <a href="{{url('user/biodata', $row->id)}}" class="btn btn-success btn-sm">
-                                            Add Biodata
-                                        </a>
+                                        <div class="col-md-8">
+                                            <p class="bg-danger rounded h6 px-1 text-white">{{$row->status}}</p>
+                                        </div>
                                         @endif
                                     </td>
                                 </tr>
@@ -94,12 +99,15 @@
             </div>
         </div>
     </div>
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript">
-        $('.remove-data').click(function (event) {
+
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        })
+
+        $('.remove').click(function (event) {
             var form = $(this).closest("form");
             event.preventDefault();
             const swalWithBootstrapButtons = Swal.mixin({
@@ -138,13 +146,5 @@
                 }
             })
         });
-
     </script>
-
-
-    <script>
-        $(document).ready(function () {
-            $('#myTable').DataTable();
-        })
-    </script>
-    @endsection
+    @endSection

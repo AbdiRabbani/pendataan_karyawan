@@ -25,6 +25,9 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{asset('template/css/material-dashboard.css?v=3.0.4')}}" rel="stylesheet" />
 
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet" />
+
+
     <style>
         .bg-light-green {
             background: #22a78c;
@@ -94,15 +97,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="/title">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-journal-arrow-up"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Title</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link text-white " href="/departement">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="bi bi-journal-arrow-up"></i>
@@ -156,7 +150,6 @@
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
 
-
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item">
@@ -169,7 +162,7 @@
                                 <div class="sidenav-toggler-inner">
                                     <i class="sidenav-toggler-line"></i>
                                     <i class="sidenav-toggler-line"></i>
-                                    <i class="si    denav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
                                 </div>
                             </a>
                         </li>
@@ -180,25 +173,6 @@
 
         <!-- End Navbar -->
         @yield('content')
-
-        <footer class="footer py-4  ">
-            <div class="container-fluid">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-lg-6 mb-lg-0 mb-4">
-                        <div class="copyright text-center text-sm text-muted text-lg-start">
-                            © <script>
-                                document.write(new Date().getFullYear())
-
-                            </script>,
-                            made by
-                            <a href="https://idn.sch.id/" class="font-weight-bold" target="_blank">IDN Boarding School
-                                Student</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
     </main>
 
     <!--   Core JS Files   -->
@@ -213,6 +187,8 @@
 
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{asset('template/js/material-dashboard.min.js?v=3.0.4')}}"></script>
-</body>
 
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
+
+</body>
 </html>

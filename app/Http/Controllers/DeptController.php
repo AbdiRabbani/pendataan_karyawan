@@ -69,7 +69,10 @@ class DeptController extends Controller
     public function edit($id)
     {
         $dept = Dept::findOrFail($id);
-        return view('departement.edit-dept', compact('dept'));
+        
+        $manager = User::where('level', 'manager')->get()->all();
+        $supervisor = User::where('level', 'supervisor')->get()->all();
+        return view('departement.edit-dept', compact('dept', 'manager', 'supervisor'));
     }
 
     /**

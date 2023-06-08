@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendEmail;
 
 class EmailController extends Controller
 {
@@ -12,7 +11,7 @@ class EmailController extends Controller
     {
         $mail_data = [
             'recipient' => 'abdirabbani59@gmail.com',
-            'fromEmail' => 'fawazalfajr845@gmail.com',
+            'fromEmail' => 'abdirabbani59%gmail.com',
             'fromName' => 'Fawaz',
             'subject' => 'Laravel',
         ];

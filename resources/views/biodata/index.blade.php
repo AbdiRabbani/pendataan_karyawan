@@ -31,7 +31,19 @@
                                     <p>{{$row->status}}</p>
                                 </td>
                                 <td class="px-4">{{$row->user->email}}</td>
-                                <td class="px-4">{{$row->title->title_name}}</td>
+                                <td class="px-4">
+                                @if($row->user->level == 'staff')
+                                    Leader/Staff
+                                    @elseif($row->user->level == 'administration')
+                                    Operator/Administration
+                                    @elseif($row->user->level == 'admin')
+                                    Admin
+                                    @elseif($row->user->level == 'manager')
+                                    Manager
+                                    @else
+                                    Supervisor
+                                    @endif
+                                </td>
                                 <td class="align-middle text-center text-sm">
                                         <form action="{{route('biodata.destroy', $row->id)}}" method="post">
                                             @csrf

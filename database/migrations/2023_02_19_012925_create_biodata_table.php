@@ -16,7 +16,6 @@ class CreateBiodataTable extends Migration
         Schema::create('biodata', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_user')->unsigned();
-            $table->integer('id_title')->unsigned();
             $table->integer('id_dept')->unsigned();
             $table->string('nip');
             $table->string('leaveperyear');
@@ -28,7 +27,6 @@ class CreateBiodataTable extends Migration
             $table->string('mobile_phone');
             $table->string('photo');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_title')->references('id')->on('title')->onDelete('cascade');
             $table->foreign('id_dept')->references('id')->on('departement')->onDelete('cascade');
             $table->string('bank_name');
             $table->string('account_name');

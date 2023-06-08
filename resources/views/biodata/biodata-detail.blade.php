@@ -21,7 +21,7 @@
                         {{ $bio->user->name }} <span class="caret"></span>
                     </h5>
                     <p class="mb-0 font-weight-normal text-sm">
-                        {{$bio->title->title_name}}
+                        {{$bio->user->level}}
                     </p>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Join
                                         Date:</strong> &nbsp; {{$bio->join_date}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Title:</strong> &nbsp; {{$bio->title->title_name}}</li>
+                                        class="text-dark">Title:</strong> &nbsp; {{$bio->user->level}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
                                         class="text-dark">Departement:</strong> &nbsp; {{$bio->dept->dept_name}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
