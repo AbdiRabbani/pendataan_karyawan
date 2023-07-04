@@ -34,6 +34,7 @@ class LeaveController extends Controller
         $total = LeavePermit::where('id_luser', Auth()->user()->id)->sum('total_leave');
         
         $manager = LeavePermit::where('id_manager' , Auth()->user()->id)->get()->all();
+        
         $supervisor = LeavePermit::where('id_supervisor', Auth()->user()->id)->get()->all();
         $admin = LeavePermit::all();
 
@@ -88,9 +89,13 @@ class LeaveController extends Controller
             'end' => $request->end_leave,
         ];
 
-        Mail::to(User::where('id' , $request->id_manager)->get('email'))->send(new SendMailManager($data));
-        Mail::to(User::where('id' , $request->id_supervisor)->get('email'))->send(new SendMailSuper($data));
-        Mail::to(User::where('level' , 'admin')->get('email'))->send(new SendMail($data));
+        if(Auth()->user()->level == "staff" || Auth()->user()->level == "administration") {
+            Mail::to(User::where('id' , $request->id_manager)->get('email'))->send(new SendMailManager($data));
+            Mail::to(User::where('id' , $request->id_supervisor)->get('email'))->send(new SendMailSuper($data));
+            Mail::to(User::where('level' , 'admin')->get('email'))->send(new SendMail($data));
+        } else {
+            Mail::to(User::where('level' , 'admin')->get('email'))->send(new SendMail($data));
+        }
 
         Session::flash('message', 'Thank you for yout email');
         return redirect('/leave');

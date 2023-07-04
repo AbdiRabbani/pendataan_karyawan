@@ -2,7 +2,7 @@
 
 @section('content')
 
-@if($annual_limit)
+@if(Auth::user()->biodata == "true")
 <div class="container-fluid py-4">
     <div class="col-md-12 d-flex justify-content-evenly">
         <div class="col-md-4 border rounded p-2 m-1">
@@ -102,9 +102,9 @@
             <p class="h3 d-flex">
                 All staff leave request
             </p>
-                @csrf
-                <!-- <button class="btn btn-danger btn-sm remove-data">reset all</button> -->
-                <a href="/leave/history" class="btn btn-warning btn-sm">Leave History</a>
+            @csrf
+            <!-- <button class="btn btn-danger btn-sm remove-data">reset all</button> -->
+            <a href="/leave/history" class="btn btn-warning btn-sm">Leave History</a>
             @endif
         </div>
 
@@ -119,9 +119,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(Auth::user()->level == 'manager')
+                @if(Auth::user()->level == 'manager')
                     @foreach($manager as $row)
-                    @if($row->status == "pending" && $row->id_luser != Auth::user()->id)
+                    @if($row->status == "pending" && $row->user->level != "manager" && $row->user->level != "supervisor" && $row->user->level != "admin")
                     <tr>
                         <td>{{$row->user->name}} ({{$row->user->level}})</td>
                         <td>{{$row->name}}</td>
@@ -164,13 +164,12 @@
                             </form>
                         </td>
                     </tr>
-
                     @endif
+
                     @endforeach
                     @elseif(Auth::user()->level == 'supervisor')
                     @foreach($supervisor as $row)
-                    @if($row->status == "pending" && $row->id_luser != Auth::user()->id && $row->id_luser !=
-                    $row->id_manager)
+                    @if($row->status == "pending" && $row->user->level != "manager" && $row->user->level != "supervisor" && $row->user->level != "admin")
                     <tr>
                         <td>{{$row->user->name}} ({{$row->user->level}})</td>
                         <td>{{$row->name}}</td>
@@ -218,7 +217,7 @@
 
                     @elseif(Auth::user()->level == 'admin')
                     @foreach($admin as $row)
-                    @if($row->status == "pending")
+                    @if($row->status == "pending" && $row->id_luser != Auth::User()->id)
                     <tr>
                         <td>{{$row->user->name}} ({{$row->user->level}})</td>
                         <td>{{$row->name}}</td>

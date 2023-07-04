@@ -189,7 +189,7 @@ class DataBioController extends Controller
         if($request->hasFile('photo')){
             $dataBio = [
                 'id_user' => $data['id_user'],
-                    'id_dept' => $data['id_dept'],
+                'id_dept' => $data['id_dept'],
                 'leaveperyear' => $data['leaveperyear'],
                 'nip' => $data['nip'],
                 'photo' => $data['photo'],
